@@ -1,237 +1,386 @@
 # SamPOS Dashboard
 
-A production-ready Point of Sale (POS) management dashboard built with Python and Flask. It helps businesses manage sales, inventory, customers, and reporting through a clean web interface and RESTful APIs.
+A comprehensive Django-based Point-of-Sale (POS) dashboard system for managing sales, customers, subscriptions, transactions, reports, and coupons.
 
 ## 📋 Project Overview
-SamPOS Dashboard centralizes daily retail operations:
-- Process sales and refunds
-- Track stock in real time with low-stock alerts
-- Maintain customers and purchase history
-- Generate reports and analytics for decision making
-- Role-based authentication and permissions
 
-## ✨ Features
-- Sales: create orders, line items, discounts, taxes, refunds
-- Inventory: products, categories, stock levels, adjustments, suppliers
-- Customers: profiles, purchase history, loyalty points (optional)
-- Reports: daily/weekly/monthly sales, top products/customers, taxes
-- Auth: JWT-based API auth, role-based access (Admin, Manager, Cashier)
-- UI: Responsive Bootstrap-based dashboard
+SamPOS Dashboard is built with **Django** and **Django REST Framework** to provide a robust backend API for point-of-sale operations. The project follows Django best practices with a modular app structure, environment-based settings, and RESTful API design.
 
-## 🛠️ Tech Stack
-- Backend: Python, Flask (Flask-RESTful / Flask Blueprint), SQLAlchemy
-- Frontend: HTML, CSS, JavaScript (Bootstrap)
-- Database: SQLite (dev) / PostgreSQL (prod)
-- Auth: JWT (PyJWT/Flask-JWT-Extended)
-- Env/Config: python-dotenv
+## 🏗️ Project Structure
 
-## 📦 Installation & Setup
+```
+SamPOS_Dashboard/
+├── sampos/
+│   ├── apps/
+│   │   ├── core/              # Core functionality and shared utilities
+│   │   ├── customers/         # Customer management
+│   │   ├── reports/           # Sales reports and analytics
+│   │   ├── coupons/           # Coupon and discount management
+│   │   ├── subscriptions/     # Subscription management
+│   │   ├── transactions/      # Transaction processing
+│   │   └── manageusers/       # User management
+│   ├── config/
+│   │   ├── settings/
+│   │   │   ├── base.py        # Base settings
+│   │   │   ├── development.py # Development settings
+│   │   │   └── production.py  # Production settings
+│   │   ├── urls.py            # Main URL configuration
+│   │   └── wsgi.py            # WSGI configuration
+│   ├── manage.py              # Django management script
+│   └── gunicorn-cfg.py        # Gunicorn configuration
+├── templates/                  # HTML templates
+├── requirements.txt           # Python dependencies
+├── .gitignore
+└── README.md
+```
+
+## 🔧 Installation & Setup
+
 ### Prerequisites
-- Python 3.9+ (3.8+ should work)
-- pip and virtualenv
-- PostgreSQL (for production)
+- Python 3.8+
+- pip
+- virtualenv (recommended)
+- PostgreSQL/MySQL (or SQLite for development)
 
-### 1) Clone the repository
+### Step 1: Clone the Repository
 ```bash
 git clone https://github.com/pravin-python/SamPOS_Dashboard.git
 cd SamPOS_Dashboard
 ```
 
-### 2) Create and activate a virtual environment
+### Step 2: Create Virtual Environment
 ```bash
-# Windows
+# Create virtual environment
 python -m venv venv
-venv\Scripts\activate
 
-# macOS/Linux
-python3 -m venv venv
+# Activate on Linux/Mac
 source venv/bin/activate
+
+# Activate on Windows
+venv\Scripts\activate
 ```
 
-### 3) Install dependencies
+### Step 3: Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4) Configure environment variables
-Create a file named .env in the project root. Example:
+### Step 4: Environment Configuration
+Create a `.env` file in the project root with the following variables:
+
 ```env
-# Flask
-FLASK_ENV=development
-FLASK_APP=app.py
-SECRET_KEY=change-this-in-production
+# Django Settings
+DJANGO_SETTINGS_MODULE=config.settings.development
+SECRET_KEY=your-secret-key-here
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
 
-# Database (SQLite for dev)
-DATABASE_URL=sqlite:///sampos.db
+# Database Configuration
+DB_ENGINE=django.db.backends.postgresql
+DB_NAME=sampos_db
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+DB_HOST=localhost
+DB_PORT=5432
 
-# Database (PostgreSQL example for prod)
-# DATABASE_URL=postgresql+psycopg2://USER:PASSWORD@HOST:5432/DBNAME
-
-# JWT
-JWT_SECRET_KEY=change-this-too
-TOKEN_EXPIRES_IN_DAYS=7
-
-# App
-ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+# For development, you can use SQLite:
+# DB_ENGINE=django.db.backends.sqlite3
+# DB_NAME=db.sqlite3
 ```
-Note: Previous README contained unrelated Django variables; this project uses Flask. Use the above variables instead.
 
-### 5) Initialize the database
+### Step 5: Database Setup
 ```bash
-# Option A: Flask CLI (example)
-flask db upgrade  # if Alembic migrations are configured
+cd sampos
 
-# Option B: Create tables programmatically (fallback)
-python scripts/init_db.py
+# Create database migrations
+python manage.py makemigrations
+
+# Apply migrations
+python manage.py migrate
+
+# Create superuser for admin access
+python manage.py createsuperuser
 ```
 
-### 6) Run the development server
+### Step 6: Run Development Server
 ```bash
-flask run --host=0.0.0.0 --port=8000
-# App will be available at http://127.0.0.1:8000
+# Run Django development server
+python manage.py runserver
+
+# Server will be available at http://127.0.0.1:8000/
 ```
 
-## 🚀 Usage
-- Access the web dashboard in your browser
-- Use seeded admin credentials (if provided by seeds) or register an admin
-- Generate an API token via login endpoint and use it in Authorization headers
-
-Example Authorization header:
-```
-Authorization: Bearer <your-jwt-token>
+### Optional: Collect Static Files (for production)
+```bash
+python manage.py collectstatic
 ```
 
-## 📡 API Information
-Base URL (dev): http://127.0.0.1:8000/api
-Authentication: JWT in Authorization: Bearer <token>
-Content-Type: application/json
+## 🚀 Running the Server
 
-Below is a representative API surface. Endpoints and fields may vary slightly depending on the current code. Adjust to your routes if names differ.
+### Development Mode
+```bash
+cd sampos
+python manage.py runserver
+```
 
-### Auth
-- POST /api/auth/login
-  - Purpose: Authenticate user and return JWT
-  - Request
-    ```json
-    { "username": "admin", "password": "secret" }
-    ```
-  - Response
-    ```json
-    { "access_token": "<jwt>", "user": {"id": 1, "role": "admin"} }
-    ```
+### Production Mode (with Gunicorn)
+```bash
+cd sampos
+gunicorn --config gunicorn-cfg.py config.wsgi:application
+```
 
-- POST /api/auth/refresh
-  - Purpose: Refresh access token
-  - Response
-    ```json
-    { "access_token": "<jwt>" }
-    ```
+## 📱 Django Apps Included
 
-### Users
-- GET /api/users (Admin)
-- POST /api/users (Admin) – create user
-- GET /api/users/:id
-- PATCH /api/users/:id
-- DELETE /api/users/:id (Admin)
+### 1. **core**
+Core functionality, utilities, and shared components used across other apps.
 
-### Products
-- GET /api/products?search=&category=&page=&limit=
-- POST /api/products
-  - Request (example)
-    ```json
-    { "name": "Milk 1L", "sku": "MILK-1L", "price": 1.99, "category_id": 2, "stock": 50 }
-    ```
-  - Response (example)
-    ```json
-    { "id": 10, "name": "Milk 1L", "sku": "MILK-1L", "price": 1.99, "category_id": 2, "stock": 50 }
-    ```
-- GET /api/products/:id
-- PATCH /api/products/:id
-- DELETE /api/products/:id
+### 2. **customers**
+Manages customer data, profiles, and customer-related operations.
+- CRUD operations for customers
+- Customer search and filtering
+- Customer history tracking
 
-### Inventory
-- POST /api/inventory/adjustments
-  - Request
-    ```json
-    { "product_id": 10, "delta": -2, "reason": "breakage" }
-    ```
-  - Response
-    ```json
-    { "id": 101, "product_id": 10, "before": 50, "after": 48, "reason": "breakage" }
-    ```
-- GET /api/inventory/low-stock?threshold=10
+### 3. **reports**
+Generates sales reports, analytics, and business intelligence.
+- Sales summaries
+- Top products analysis
+- Top customers analysis
+- Date-range reporting
 
-### Customers
-- GET /api/customers?search=
-- POST /api/customers
-  - Request
-    ```json
-    { "name": "Jane Doe", "email": "jane@example.com", "phone": "+1-202-555-0101" }
-    ```
-- GET /api/customers/:id
-- PATCH /api/customers/:id
-- DELETE /api/customers/:id
+### 4. **coupons**
+Handles discount coupons and promotional codes.
+- Coupon creation and management
+- Validation and redemption
+- Usage tracking
 
-### Sales
-- POST /api/sales
-  - Purpose: Create a sale with line items and update stock
-  - Request
-    ```json
-    {
-      "customer_id": 1,
-      "items": [
-        { "product_id": 10, "qty": 2, "unit_price": 1.99, "discount": 0 }
-      ],
-      "paid": 3.98,
-      "tax": 0.20,
-      "note": "cash"
-    }
-    ```
-  - Response
-    ```json
-    {
-      "id": 5001,
-      "total": 4.18,
-      "items": [ { "product_id": 10, "qty": 2 } ],
-      "created_at": "2025-10-31T12:00:00Z"
-    }
-    ```
-- GET /api/sales/:id
-- GET /api/sales?from=2025-10-01&to=2025-10-31&page=1&limit=20
-- POST /api/sales/:id/refund
-  - Request
-    ```json
-    { "items": [ { "sale_item_id": 777, "qty": 1 } ], "reason": "customer return" }
-    ```
+### 5. **subscriptions**
+Manages customer subscriptions and recurring billing.
+- Subscription plans
+- Subscription status tracking
+- Renewal management
 
-### Reports
-- GET /api/reports/sales/summary?from=&to=
-- GET /api/reports/top-products?from=&to=&limit=10
-- GET /api/reports/top-customers?from=&to=&limit=10
+### 6. **transactions**
+Processes and records all financial transactions.
+- Transaction logging
+- Payment processing
+- Transaction history
 
-### Health
-- GET /api/health
-  - Response
-    ```json
-    { "status": "ok", "version": "1.0.0" }
-    ```
+### 7. **manageusers**
+User authentication, authorization, and user management.
+- User registration and login
+- Role-based access control
+- User profiles
 
-### Error format
-```json
-{ "error": { "code": "VALIDATION_ERROR", "message": "Field price is required" } }
+## 🔌 API Endpoints
+
+The application provides RESTful API endpoints using Django REST Framework:
+
+### Authentication
+The API uses token-based authentication (Django REST Framework Token Authentication or JWT).
+
+**Headers required for authenticated requests:**
+```
+Authorization: Token <your-auth-token>
+```
+
+### Customer Endpoints
+```
+GET    /api/customers/           # List all customers
+POST   /api/customers/           # Create new customer
+GET    /api/customers/{id}/      # Get customer details
+PUT    /api/customers/{id}/      # Update customer
+PATCH  /api/customers/{id}/      # Partial update customer
+DELETE /api/customers/{id}/      # Delete customer
+```
+
+### Subscription Endpoints
+```
+GET    /api/subscription/        # List all subscriptions
+POST   /api/subscription/        # Create new subscription
+GET    /api/subscription/{id}/   # Get subscription details
+PUT    /api/subscription/{id}/   # Update subscription
+DELETE /api/subscription/{id}/   # Delete subscription
+```
+
+### Transaction Endpoints
+```
+GET    /api/transactions/        # List all transactions
+POST   /api/transactions/        # Create new transaction
+GET    /api/transactions/{id}/   # Get transaction details
+```
+
+### Reports Endpoints
+```
+GET    /api/reports/sales/summary/       # Sales summary report
+GET    /api/reports/top-products/        # Top selling products
+GET    /api/reports/top-customers/       # Top customers by sales
+```
+
+**Query Parameters for Reports:**
+- `from` - Start date (format: YYYY-MM-DD)
+- `to` - End date (format: YYYY-MM-DD)
+- `limit` - Number of results (default: 10)
+
+### Coupon Endpoints
+```
+GET    /api/coupons/             # List all coupons
+POST   /api/coupons/             # Create new coupon
+GET    /api/coupons/{id}/        # Get coupon details
+PUT    /api/coupons/{id}/        # Update coupon
+DELETE /api/coupons/{id}/        # Delete coupon
+POST   /api/coupons/validate/    # Validate coupon code
+```
+
+### Example API Request
+
+**Create Customer:**
+```bash
+curl -X POST http://127.0.0.1:8000/api/customers/ \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token your-token-here" \
+  -d '{
+    "name": "John Doe",
+    "email": "john@example.com",
+    "phone": "+1234567890"
+  }'
+```
+
+**Get Sales Report:**
+```bash
+curl -X GET "http://127.0.0.1:8000/api/reports/sales/summary/?from=2025-10-01&to=2025-10-31" \
+  -H "Authorization: Token your-token-here"
+```
+
+## ⚙️ Settings & Environment
+
+### Settings Structure
+The project uses environment-based settings:
+
+- **`base.py`**: Common settings shared across all environments
+- **`development.py`**: Development-specific settings (DEBUG=True, SQLite, etc.)
+- **`production.py`**: Production-specific settings (DEBUG=False, PostgreSQL, security settings)
+
+### Switching Environments
+Set the `DJANGO_SETTINGS_MODULE` environment variable:
+
+```bash
+# Development
+export DJANGO_SETTINGS_MODULE=config.settings.development
+
+# Production
+export DJANGO_SETTINGS_MODULE=config.settings.production
+```
+
+Or specify it when running commands:
+```bash
+python manage.py runserver --settings=config.settings.development
+```
+
+## 🔐 Authentication
+
+The API uses Django REST Framework's token authentication:
+
+1. **Obtain Token:**
+```bash
+curl -X POST http://127.0.0.1:8000/api/auth/token/ \
+  -H "Content-Type: application/json" \
+  -d '{"username": "your_username", "password": "your_password"}'
+```
+
+2. **Use Token in Requests:**
+```
+Authorization: Token <your-token-here>
+```
+
+## 🛠️ Management Commands
+
+### Common Django Commands
+```bash
+# Create migrations
+python manage.py makemigrations
+
+# Apply migrations
+python manage.py migrate
+
+# Create superuser
+python manage.py createsuperuser
+
+# Run development server
+python manage.py runserver
+
+# Run tests
+python manage.py test
+
+# Collect static files
+python manage.py collectstatic
+
+# Open Django shell
+python manage.py shell
+
+# Show all URLs
+python manage.py show_urls  # (if django-extensions installed)
+```
+
+## 📦 Key Dependencies
+
+- **Django** - Web framework
+- **Django REST Framework** - API framework
+- **djangorestframework-simplejwt** - JWT authentication (if used)
+- **python-decouple** - Environment variable management
+- **psycopg2-binary** - PostgreSQL adapter
+- **gunicorn** - WSGI HTTP server for production
+- **whitenoise** - Static file serving
+
+## 🧪 Testing
+
+Run tests with:
+```bash
+cd sampos
+python manage.py test
+
+# Run specific app tests
+python manage.py test apps.customers
+
+# Run with coverage
+coverage run --source='.' manage.py test
+coverage report
 ```
 
 ## 🤝 Contribution Guidelines
-- Fork the repo and create a feature branch: git checkout -b feat/my-feature
-- Follow conventional commits if possible (feat:, fix:, docs:, chore:)
-- Write tests for new features and run the test suite
-- Lint/format before committing (e.g., black, flake8, isort)
-- Open a PR with clear description, screenshots (if UI), and checklist
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feat/my-feature`
+3. Follow Django coding conventions and PEP 8
+4. Write tests for new features
+5. Run tests and ensure they pass: `python manage.py test`
+6. Format code with `black` and `isort`:
+   ```bash
+   black .
+   isort .
+   ```
+7. Commit with conventional commits: `git commit -m "feat: add customer export"`
+8. Push to your fork: `git push origin feat/my-feature`
+9. Open a Pull Request with:
+   - Clear description of changes
+   - Screenshots (if UI changes)
+   - Test results
 
 ## 📄 License
+
 This project is licensed under the MIT License (see LICENSE file).
 
 ## 📬 Contact
-- Author: Pravin (pravin-python)
-- GitHub: https://github.com/pravin-python
-- Issues: https://github.com/pravin-python/SamPOS_Dashboard/issues
+
+- **Author**: Pravin (pravin-python)
+- **GitHub**: https://github.com/pravin-python
+- **Issues**: https://github.com/pravin-python/SamPOS_Dashboard/issues
+
+## 🙏 Acknowledgments
+
+- Built with Django and Django REST Framework
+- Inspired by modern POS systems
+- Community contributions welcome!
+
+---
+
+**Note**: This is a Django project. Make sure to use `python manage.py` commands from the `sampos/` directory, not Flask commands.
