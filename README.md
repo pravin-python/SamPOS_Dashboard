@@ -83,6 +83,21 @@ DB_PASSWORD=your_db_password
 DB_HOST=localhost
 DB_PORT=5432
 
+# --- Optional: SSL Database Connection (for cloud databases like AWS RDS) ---
+DB_SSL_MODE=require
+
+# --- Additional DJANGO_ Prefixed Security Settings ---
+DJANGO_SECURE_SSL_REDIRECT=True
+DJANGO_SESSION_COOKIE_SECURE=True
+DJANGO_SECURE_CONTENT_TYPE_NOSNIFF=True
+DJANGO_SECURE_HSTS_SECONDS=31536000
+DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=True
+DJANGO_SECURE_HSTS_PRELOAD=True
+
+# --- Logging ---
+DJANGO_LOGLEVEL=info
+API_KEY=sam4pos
+
 # For development, you can use SQLite:
 # DB_ENGINE=django.db.backends.sqlite3
 # DB_NAME=db.sqlite3
@@ -92,11 +107,12 @@ DB_PORT=5432
 ```bash
 cd sampos
 
-# Create database migrations
 python manage.py makemigrations
-
-# Apply migrations
 python manage.py migrate
+
+python manage.py makemigrations subscriptions customers coupons transactions reports
+python manage.py migrate
+
 
 # Create superuser for admin access
 python manage.py createsuperuser

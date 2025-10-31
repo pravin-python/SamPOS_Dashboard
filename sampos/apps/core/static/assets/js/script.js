@@ -171,13 +171,26 @@ document.addEventListener('DOMContentLoaded', function () {
   // component- dropdown scrollbar end
 
   // for sidebar close
-  var sidebar_hide = document.querySelector('#sidebar-hide');
-  if (sidebar_hide) {
-    sidebar_hide.addEventListener('click', function () {
-      if (document.querySelector('.pc-sidebar').classList.contains('pc-sidebar-hide')) {
-        document.querySelector('.pc-sidebar').classList.remove('pc-sidebar-hide');
+  var sidebarHideBtn = document.querySelector('#sidebar-hide');
+  var sidebar = document.querySelector('.pc-sidebar');
+
+  // Check session storage on load
+  if (sessionStorage.getItem('sidebarHidden') === 'true') {
+    sidebar.classList.add('pc-sidebar-hide');
+  } else {
+    sidebar.classList.remove('pc-sidebar-hide');
+  }
+
+  // Add click event to toggle sidebar visibility
+  if (sidebarHideBtn) {
+    sidebarHideBtn.addEventListener('click', function () {
+      sidebar.classList.toggle('pc-sidebar-hide');
+
+      // Save state in session storage
+      if (sidebar.classList.contains('pc-sidebar-hide')) {
+        sessionStorage.setItem('sidebarHidden', 'true');
       } else {
-        document.querySelector('.pc-sidebar').classList.add('pc-sidebar-hide');
+        sessionStorage.setItem('sidebarHidden', 'false');
       }
     });
   }

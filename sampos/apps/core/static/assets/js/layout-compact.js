@@ -2,18 +2,6 @@
 (function () {
   document.getElementsByTagName('html')[0].setAttribute('data-pc-layout', 'compact');
 
-  // add / remove class for body tag (for compact sidebar open/close)
-  var sidebar_hide = document.querySelector('#sidebar-hide');
-  if (sidebar_hide) {
-    sidebar_hide.addEventListener('click', function () {
-      if (document.querySelector('body').classList.contains('pc-sidebar-hide')) {
-        document.querySelector('body').classList.remove('pc-sidebar-hide');
-      } else {
-        document.querySelector('body').classList.add('pc-sidebar-hide');
-      }
-    });
-  }
-
   // add tooltip and open/close it's submenu list for first level icon
   var pc_link_click = document.querySelectorAll('.pc-navbar > li:not(.pc-caption)');
   for (var i = 0; i < pc_link_click.length; i++) {
