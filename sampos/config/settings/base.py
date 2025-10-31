@@ -18,6 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 load_dotenv(BASE_DIR / ".env")
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+API_KEY = os.getenv("API_KEY")
 
 LOG_DIR = BASE_DIR / "logs"
 
@@ -48,9 +49,9 @@ INSTALLED_APPS = [
     "apps.transactions"
 
 ]
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'apps.core.apis.authentication.APIKeyAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
@@ -58,6 +59,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ]
 }
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

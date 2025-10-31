@@ -1,40 +1,43 @@
-import json
-from rest_framework import viewsets
-from rest_framework.response import Response
-from rest_framework.decorators import action, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.permissions import AllowAny
-from rest_framework.views import APIView
-
-from django.utils import timezone
-
+from rest_framework.decorators import action
+from rest_framework import viewsets
 from django.core.paginator import Paginator
-from apps.subscriptions.serializers import SubscriptionSerializer
-from apps.subscriptions.models import Subscription
+from rest_framework.response import Response
 
+from apps.subscriptions.models import Subscription
+from apps.subscriptions.serializers import SubscriptionSerializer
 
 class SubscriptionViewSet(viewsets.ModelViewSet):
     queryset = Subscription.objects.all()
     serializer_class = SubscriptionSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]  # Default rule
 
-    @action(detail=False, methods=['get'], url_path='lists', name='subscription-lists')
+    def get_permissions(self):
+        if self.action == 'subscription_lists':
+            return [AllowAny()]
+        return [IsAuthenticated()]
+
+    @action(detail=False, methods=['get'], url_path='lists')
     def subscription_lists(self, request):
-        per_page = request.POST.get('per_page', 10)
-        page = request.POST.get('page', 1)
+        per_page = int(request.GET.get('per_page', 10))
+        page = int(request.GET.get('page', 1))
+
         subscription = Subscription.objects.all()
         paginator = Paginator(subscription, per_page)
         page_obj = paginator.get_page(page)
 
+        serializer = self.get_serializer(page_obj, many=True)
+
         return Response({
+            "status": True,
             "total": paginator.count,
             "per_page": per_page,
             "page": page_obj.number,
             "num_pages": paginator.num_pages,
-            'date': page_obj.object_list,
+            "data": serializer.data,
         })
 
-    @action(detail=False, methods=['post'], url_path='create', name='subscription-create')
+    @action(detail=False, methods=['post'], url_path='create')
     def subscription_create(self, request):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
@@ -44,9 +47,8 @@ class SubscriptionViewSet(viewsets.ModelViewSet):
                 "message": "Subscription created successfully",
                 "data": serializer.data
             })
-        else:
-            return Response({
-                "status": False,
-                "message": "Validation failed",
-                "errors": serializer.errors
-            }, status=400)
+        return Response({
+            "status": False,
+            "message": "Validation failed",
+            "errors": serializer.errors
+        }, status=400)
