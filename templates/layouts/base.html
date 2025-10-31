@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  {% include 'include/head.html' %}
+  {% block extrastyle %}{% endblock extrastyle %}
+</head>
+
+<body>
+  {% block pre_loader %}
+        {% include 'include/pre-loader.html' %}
+  {% endblock pre_loader %}
+  
+  {% include 'include/sidebar.html' %}
+  {% include 'include/header.html' %}
+  <div class="pc-container">
+    <div class="pc-content">
+      {% block breadcrumbs %}
+          {% include 'include/breadcrumb.html' %}
+      {% endblock breadcrumbs %}
+      
+      {% block content %}{% endblock content %}
+      
+    </div>
+  </div>
+
+  {% include 'include/footer.html' %}
+
+  {% include 'include/script.html' %}
+  {% block extrajs %}{% endblock extrajs %}
+
+
+
+</body>
+</html>

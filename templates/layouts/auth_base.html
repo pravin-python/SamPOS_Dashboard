@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <!-- [Head] start -->
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        {% include 'include/head.html' %}
+        {% block extrastyle %}{% endblock extrastyle %}
+    </head>
+
+  <!-- [Head] end -->
+  <!-- [Body] Start -->
+
+  <body>
+    {% block pre_loader %}
+            {% include 'include/pre-loader.html' %}
+    {% endblock pre_loader %}
+    <div class="auth-main relative">
+      <div class="auth-wrapper v1 flex items-center w-full h-full min-h-screen">
+        <div class="auth-form flex items-center justify-center grow flex-col min-h-screen relative p-6 ">
+          <div class="w-full max-w-[350px] relative">
+            <div class="auth-bg ">
+              <span class="absolute top-[-100px] right-[-100px] w-[300px] h-[300px] block rounded-full bg-theme-bg-1 animate-[floating_7s_infinite]"></span>
+              <span class="absolute top-[150px] right-[-150px] w-5 h-5 block rounded-full bg-primary-500 animate-[floating_9s_infinite]"></span>
+              <span class="absolute left-[-150px] bottom-[150px] w-5 h-5 block rounded-full bg-theme-bg-1 animate-[floating_7s_infinite]"></span>
+              <span class="absolute left-[-100px] bottom-[-100px] w-[300px] h-[300px] block rounded-full bg-theme-bg-2 animate-[floating_9s_infinite]"></span>
+            </div>
+            <div class="card sm:my-12  w-full shadow-none">
+              {% block content %} {% endblock content%}
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <!-- [ Main Content ] end -->
+    {% include 'include/script.html' %}
+    {% block extrajs %}{% endblock extrajs %}
+  </body>
+  <!-- [Body] end -->
+</html>

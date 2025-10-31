@@ -1,0 +1,151 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %} Coupons {% endblock title %}
+{% block breadcrumbs %}
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+  <div class="page-block">
+    <div class="page-header-title">
+      <h5 class="mb-0 font-medium">Coupons</h5>
+    </div>
+    <ul class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'core:index'%}">Home</a></li>
+      <li class="breadcrumb-item" aria-current="page">Coupons</li>
+    </ul>
+  </div>
+</div>
+<!-- [ breadcrumb ] end -->
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="card mb-4">
+  <div class="card-header d-flex justify-content-between align-items-center flex-wrap">
+      <h5 class="mb-0">Coupons</h5>
+
+      <div class="header-actions d-flex align-items-center gap-3 mt-2 mt-md-0">
+        <!-- Add Subscription Button -->
+        <button
+          type="button"
+          class="btn btn-primary btn-sm"
+          data-bs-toggle="modal"
+          data-bs-target="#addSubscriptionModal"
+        >
+          + Create Coupon
+        </button>
+      </div>
+    </div>
+</div>
+
+<!-- [ Main Content ] start -->
+<div class="grid grid-cols-12 gap-x-6">
+          <div class="col-span-12 xl:col-span-4 md:col-span-6">
+            <div class="card">
+              <div class="card-body">
+                    <p><strong>Coupon Code:</strong> <a href="#" class="text-primary fw-semibold">SAVE20</a></p>
+                    <p><strong>Validity Period:</strong> <span class="text-primary">29-09-2025 - 1-10-2025</span></p>
+                    <p><strong>Value:</strong> 20%</p>
+                    <p><strong>Usage Limit:</strong> <a href="#" class="text-primary">50 uses</a></p>
+                    <p><strong>Times Used:</strong> 34</p>
+                    <p><strong>Status:</strong> <span class="text-secondary fw-semibold">Expired</span></p>
+                    <div class="d-flex gap-2 mt-3">
+                        <button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i></button>
+                        <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="col-span-12 xl:col-span-4 md:col-span-6">
+            <div class="card">
+              <div class="card-body">
+                    <p><strong>Coupon Code:</strong> <a href="#" class="text-primary fw-semibold">SAVE20</a></p>
+                    <p><strong>Validity Period:</strong> <span class="text-primary">29-09-2025 - 1-10-2025</span></p>
+                    <p><strong>Value:</strong> 20%</p>
+                    <p><strong>Usage Limit:</strong> <a href="#" class="text-primary">50 uses</a></p>
+                    <p><strong>Times Used:</strong> 34</p>
+                    <p><strong>Status:</strong> <span class="text-secondary fw-semibold">Expired</span></p>
+                    <div class="d-flex gap-2 mt-3">
+                        <button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i></button>
+                        <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="col-span-12 xl:col-span-4">
+            <div class="card">
+              <div class="card-body">
+                    <p><strong>Coupon Code:</strong> <a href="#" class="text-primary fw-semibold">SAVE20</a></p>
+                    <p><strong>Validity Period:</strong> <span class="text-primary">29-09-2025 - 1-10-2025</span></p>
+                    <p><strong>Value:</strong> 20%</p>
+                    <p><strong>Usage Limit:</strong> <a href="#" class="text-primary">50 uses</a></p>
+                    <p><strong>Times Used:</strong> 34</p>
+                    <p><strong>Status:</strong> <span class="text-secondary fw-semibold">Expired</span></p>
+                    <div class="d-flex gap-2 mt-3">
+                        <button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i></button>
+                        <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                    </div>
+                </div>
+            </div>
+          </div>
+          </div>
+
+          <!-- Create Coupon Modal -->
+<div class="modal fade" id="createCouponModal" tabindex="-1" aria-labelledby="createCouponModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow-sm">
+      <div class="modal-header border-0 pb-0">
+        <h5 class="modal-title" id="createCouponModalLabel">Create Coupon</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label class="form-label">Coupon Code</label>
+            <input type="text" class="form-control" placeholder="Enter coupon code" required>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Valid From</label>
+              <input type="date" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Valid To</label>
+              <input type="date" class="form-control" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Discount Type</label>
+              <select class="form-select" required>
+                <option value="">Select Type</option>
+                <option>Percentage</option>
+                <option>Flat</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Value</label>
+              <input type="text" class="form-control" placeholder="Enter value" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Usage Limit</label>
+              <input type="number" class="form-control" placeholder="Enter limit" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Status</label>
+              <select class="form-select" required>
+                <option value="">Select</option>
+                <option>Active</option>
+                <option>Expired</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Add</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- [ Main Content ] end -->
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %} Reports {% endblock title %}
+{% block breadcrumbs %}
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+  <div class="page-block">
+    <div class="page-header-title">
+      <h5 class="mb-0 font-medium">Reports</h5>
+    </div>
+    <ul class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'core:index'%}">Home</a></li>
+      <li class="breadcrumb-item" aria-current="page">Reports</li>
+    </ul>
+  </div>
+</div>
+<!-- [ breadcrumb ] end -->
+{% endblock breadcrumbs %}

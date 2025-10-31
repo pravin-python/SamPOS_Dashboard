@@ -1,0 +1,169 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %} Subscriptions {% endblock title %}
+{% block breadcrumbs %}
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+  <div class="page-block">
+    <div class="page-header-title">
+      <h5 class="mb-0 font-medium">Subscriptions</h5>
+    </div>
+    <ul class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'core:index'%}">Home</a></li>
+      <li class="breadcrumb-item" aria-current="page">Subscriptions</li>
+    </ul>
+  </div>
+</div>
+<!-- [ breadcrumb ] end -->
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="card mb-4">
+  <div class="card-header d-flex justify-content-between align-items-center flex-wrap">
+      <h5 class="mb-0">Subscriptions</h5>
+
+      <div class="header-actions d-flex align-items-center gap-3 mt-2 mt-md-0">
+        <!-- Add Subscription Button -->
+        <button
+          type="button"
+          class="btn btn-primary btn-sm"
+          data-bs-toggle="modal"
+          data-bs-target="#addSubscriptionModal"
+        >
+          + Add New Subscription Plan
+        </button>
+      </div>
+    </div>
+</div>
+
+<!-- [ Main Content ] start -->
+<div class="grid grid-cols-12 gap-x-6">
+          <div class="col-span-12 xl:col-span-4 md:col-span-6">
+            <div class="card">
+                    <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="fw-semibold mb-0">Standard Plan</h6>
+                    <span class="text-primary fw-semibold">$15 / Month</span>
+                    </div>
+
+                    <ul class="list-unstyled small text-muted mb-4">
+                    <li>• All Basic features</li>
+                    <li>• Bluetooth Scanner support</li>
+                    <li>• Priority Sync (faster processing)</li>
+                    <li>• Coupons & Discounts</li>
+                    </ul>
+
+                    <div class="d-flex justify-content-between">
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i></button>
+                        <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                    </div>
+                    <button class="btn btn-primary btn-sm">Deactivate Plan</button>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="col-span-12 xl:col-span-4 md:col-span-6">
+            <div class="card">
+              <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="fw-semibold mb-0">Standard Plan</h6>
+                    <span class="text-primary fw-semibold">$15 / Month</span>
+                    </div>
+
+                    <ul class="list-unstyled small text-muted mb-4">
+                    <li>• All Basic features</li>
+                    <li>• Bluetooth Scanner support</li>
+                    <li>• Priority Sync (faster processing)</li>
+                    <li>• Coupons & Discounts</li>
+                    </ul>
+
+                    <div class="d-flex justify-content-between">
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i></button>
+                        <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                    </div>
+                    <button class="btn btn-primary btn-sm">Deactivate Plan</button>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="col-span-12 xl:col-span-4">
+            <div class="card">
+              <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="fw-semibold mb-0">Standard Plan</h6>
+                    <span class="text-primary fw-semibold">$15 / Month</span>
+                    </div>
+
+                    <ul class="list-unstyled small text-muted mb-4">
+                    <li>• All Basic features</li>
+                    <li>• Bluetooth Scanner support</li>
+                    <li>• Priority Sync (faster processing)</li>
+                    <li>• Coupons & Discounts</li>
+                    </ul>
+
+                    <div class="d-flex justify-content-between">
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i></button>
+                        <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                    </div>
+                    <button class="btn btn-primary btn-sm">Deactivate Plan</button>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+ <!-- Add New Subscription Modal -->
+<div class="modal fade" id="addSubscriptionModal" tabindex="-1" aria-labelledby="addSubscriptionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-semibold" id="addSubscriptionModalLabel">Add New Subscription</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="addSubscriptionForm">
+          <!-- Subscription Plan Name -->
+          <div class="mb-3">
+            <label class="form-label text-muted small">Subscription Plan Name</label>
+            <input type="text" class="form-control" id="subscriptionName" placeholder="Premium Plan" required />
+          </div>
+
+          <!-- Features -->
+          <div class="mb-3">
+            <label class="form-label text-muted small">Features</label>
+            <textarea class="form-control" id="subscriptionFeatures" rows="3" placeholder="Add Features"></textarea>
+          </div>
+
+          <!-- Price and Duration -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label text-muted small">Price</label>
+              <input type="text" class="form-control" id="subscriptionPrice" placeholder="$30" required />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label text-muted small">Duration</label>
+              <select class="form-select" id="subscriptionDuration" required>
+                <option value="Monthly">Monthly</option>
+                <option value="Quarterly">Quarterly</option>
+                <option value="Yearly">Yearly</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Add Button -->
+          <div class="d-grid mt-3">
+            <button type="submit" class="btn btn-primary btn-block">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- [ Main Content ] end -->
+{% endblock content %}

@@ -1,0 +1,48 @@
+{% extends 'layouts/auth_base.html' %}
+{% load static %}
+{% block title %} Login {% endblock title %}
+
+{% block content %}
+<div class="card-body !p-10">
+    <div class="text-center mb-8">
+        <a href="#"><img src="{% static 'assets/images/logo-dark.svg' %}" alt="img" class="mx-auto auth-logo"/></a>
+    </div>
+    <h4 class="text-center font-medium mb-4">Login</h4>
+    <form method="post">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger py-1 small">{{ error }}</div>
+            {% endfor %}
+        {% endif %}
+
+        {% for field in form %}
+            <div class="input-group mb-3">
+                <span class="input-group-text">
+                    <i class="feather {% if field.name == 'username' %}icon-user{% else %}icon-lock{% endif %}"></i>
+                </span>
+                {{ field }}
+            </div>
+            {% if field.errors %}
+                <div class="text-danger small mb-2">{{ field.errors }}</div>
+            {% endif %}
+        {% endfor %}
+
+        <div class="flex mt-1 justify-between items-center flex-wrap">
+            <div class="form-check">
+            <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="" />
+            <label class="form-check-label text-muted" for="customCheckc1">Remember me?</label>
+            </div>
+            <h6 class="font-normal text-primary-500 mb-0">
+            <a href="#"> Forgot Password? </a>
+            </h6>
+        </div>
+
+        <div class="mt-4 text-center">
+            <button type="submit" class="btn btn-primary mx-auto shadow-2xl">Login</button>
+        </div>
+        
+    </form>
+</div>
+{% endblock content %}
