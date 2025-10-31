@@ -23,6 +23,8 @@ class Transaction(models.Model):
     error_msg = models.TextField(null=True, blank=True)
     api_response = models.JSONField(null=True, blank=True)
     transaction_date = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = "transactions"

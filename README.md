@@ -51,28 +51,56 @@ SamPOS Dashboard is a comprehensive Point of Sale (POS) management system built 
 4. **Set up environment variables**
    Create a `.env` file in the root directory and add necessary configurations:
    ```
-   FLASK_APP=app.py
-   FLASK_ENV=development
-   SECRET_KEY=your_secret_key_here
-   DATABASE_URL=sqlite:///sampos.db
+   # --- Django Settings ---
+   DJANGO_SECRET_KEY=django-insecure-ux4$tu19+&9d&!1s5q=j3j_6r=pqw%)w7-1(dx$y&yod1m_9^b
+
+   # Use your actual production domain(s)
+   DJANGO_ALLOWED_HOSTS=0.0.0.0,localhost
+
+   # CSRF trusted origins (must match your production domain with https)
+   DJANGO_CSRF_TRUSTED_ORIGINS=http://0.0.0.0:8000,http://127.0.0.1
+
+   DJANGO_SETTINGS_MODULE=config.settings.development
+
+   # --- Database Settings ---
+   DB_ENGINE=django.db.backends.postgresql
+   DB_NAME=sam4pos
+   DB_USER=root
+   DB_PASSWORD=Admin@123
+   DB_HOST=localhost
+   DB_PORT=5432
+
+   # --- Optional: SSL Database Connection (for cloud databases like AWS RDS) ---
+   DB_SSL_MODE=require
+
+   # --- Additional DJANGO_ Prefixed Security Settings ---
+   DJANGO_SECURE_SSL_REDIRECT=True
+   DJANGO_SESSION_COOKIE_SECURE=True
+   DJANGO_SECURE_CONTENT_TYPE_NOSNIFF=True
+   DJANGO_SECURE_HSTS_SECONDS=31536000
+   DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=True
+   DJANGO_SECURE_HSTS_PRELOAD=True
+
+   # --- Logging ---
+   DJANGO_LOGLEVEL=info
    ```
 
 5. **Initialize the database**
    ```bash
-   flask db init
-   flask db migrate
-   flask db upgrade
+   cd sampos
+   python .\manage.py makemigrations
+   python .\manage.py migrate
+   python .\manage.py makemigrations subscriptions reports transactions customers coupons
+   python .\manage.py migrate
    ```
 
 6. **Run the application**
    ```bash
-   python app.py
-   # or
-   flask run
+   python manage.py runserver
    ```
 
 7. **Access the dashboard**
-   Open your browser and navigate to `http://localhost:5000`
+   Open your browser and navigate to `http://localhost:8000`
 
 ## 📁 Project Structure
 ```

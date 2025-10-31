@@ -14,6 +14,8 @@ class Coupon(models.Model):
     discount_value = models.PositiveIntegerField()
     usage_limit = models.PositiveIntegerField(default=1)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='active')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = "coupons"

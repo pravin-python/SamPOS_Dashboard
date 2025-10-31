@@ -9,7 +9,7 @@
       <h5 class="mb-5 font-medium">Customers</h5>
     </div>
     <ul class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{% url 'core:index'%}">Home</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'core:index'%}" class="text-decoration-none">Home</a></li>
       <li class="breadcrumb-item" aria-current="page">Customers</li>
     </ul>
   </div>
@@ -136,8 +136,8 @@
                   </h6>
                 </td>
                 <td>
-                  <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
-                  <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
+                  <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2 text-decoration-none">Reject</a>
+                  <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px] text-decoration-none">Approve</a>
                 </td>
               </tr>
               <tr class="unread">
@@ -182,22 +182,24 @@
   </div>
 </div>
 
- <div class="modal fade" id="addCustomerModal" tabindex="-1" aria-labelledby="addCustomerModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+
+
+<!-- Modal -->
+<div class="modal fade" id="addCustomerModal" tabindex="-1" aria-labelledby="addCustomerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="addCustomerModalLabel">Add Customer</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <!-- Form Fields -->
+        <!-- Yaha Apna Form ya Content -->
         <input type="text" class="form-control mb-2" placeholder="Customer Name">
         <input type="email" class="form-control mb-2" placeholder="Email">
-        <!-- Extra fields as needed -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-primary">Save Customer</button>
       </div>
     </div>
   </div>

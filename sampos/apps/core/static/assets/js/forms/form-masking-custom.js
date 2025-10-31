@@ -15,10 +15,4 @@
   var regExpMask = IMask(document.querySelector('.telphone_with_code'), { mask: '(00) 0000-0000' });
 
   var regExpMask = IMask(document.querySelector('.us_telephone'), { mask: '(000) 000-0000' });
-
-  var regExpMask = IMask(document.querySelector('.ip'), { mask: '000.000.000.000' });
-
-  var regExpMask = IMask(document.querySelector('.ipv4'), { mask: '000.000.000.0000' });
-
-  var regExpMask = IMask(document.querySelector('.ipv6'), { mask: '0000:0000:0000:0:000:0000:0000:0000' });
 })();
