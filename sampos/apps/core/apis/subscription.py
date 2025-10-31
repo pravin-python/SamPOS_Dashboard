@@ -2,7 +2,8 @@ import json
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import action, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 
 from django.utils import timezone
@@ -15,6 +16,7 @@ from apps.subscriptions.models import Subscription
 class SubscriptionViewSet(viewsets.ModelViewSet):
     queryset = Subscription.objects.all()
     serializer_class = SubscriptionSerializer
+    permission_classes = [IsAuthenticated]
 
     @action(detail=False, methods=['get'], url_path='lists', name='subscription-lists')
     def subscription_lists(self, request):
