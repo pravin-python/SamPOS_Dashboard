@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (savedTheme) {
       layout_change(savedTheme);
     } else {
-      const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const system = 'light';
       layout_change(system);
       setStored('theme', system);
     }
@@ -309,6 +309,6 @@ function layout_theme_sidebar_change(value) {
       document.querySelector('.theme-nav-layout .btn.active').classList.remove('active');
       document.querySelector(".theme-nav-layout .btn[data-value='false']").classList.add('active');
     }
- 
+
   }
 }

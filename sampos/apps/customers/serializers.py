@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from apps.customer.models import *
+from apps.customers.models import *
 
 
 class CustomerSerializer(serializers.ModelSerializer):

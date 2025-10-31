@@ -21,7 +21,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('', include('apps.core.urls')),
-    path('customer', include('apps.customer.urls')),
+    path('customer', include('apps.customers.urls')),
     path('subscriptions', include('apps.subscriptions.urls')),
     path('coupons', include('apps.coupons.urls')),
     path('manageusers', include('apps.manageusers.urls')),

@@ -40,12 +40,13 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     "apps.core",
-    "apps.customer",
+    "apps.customers",
     "apps.coupons",
     "apps.manageusers",
     "apps.reports",
-    "apps.subscriptions"
-   
+    "apps.subscriptions",
+    "apps.transactions"
+
 ]
 
 REST_FRAMEWORK = {
@@ -155,4 +156,3 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_REDIRECT_URL = '/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
