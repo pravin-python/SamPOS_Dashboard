@@ -6,7 +6,7 @@
 <div class="page-header">
   <div class="page-block">
     <div class="page-header-title">
-      <h5 class="mb-0 font-medium">Coupons</h5>
+      <h5 class="mb-5 font-medium">Coupons</h5>
     </div>
     <ul class="breadcrumb">
       <li class="breadcrumb-item"><a href="{% url 'core:index'%}">Home</a></li>
@@ -18,22 +18,10 @@
 {% endblock breadcrumbs %}
 
 {% block content %}
-<div class="card mb-4">
-  <div class="card-header d-flex justify-content-between align-items-center flex-wrap">
-      <h5 class="mb-0">Coupons</h5>
-
-      <div class="header-actions d-flex align-items-center gap-3 mt-2 mt-md-0">
-        <!-- Add Subscription Button -->
-        <button
-          type="button"
-          class="btn btn-primary btn-sm"
-          data-bs-toggle="modal"
-          data-bs-target="#addSubscriptionModal"
-        >
-          + Create Coupon
-        </button>
-      </div>
-    </div>
+<div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addSubscriptionModal">
+        + Create Coupon
+    </button>
 </div>
 
 <!-- [ Main Content ] start -->

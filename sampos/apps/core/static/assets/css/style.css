@@ -2409,20 +2409,39 @@ text:is([data-pc-theme="dark"] *),.apexcharts-theme-light .apexcharts-menu-icon:
   --tw-text-opacity: 1;
   color: rgb(4 169 245 / var(--tw-text-opacity));
 }
-.card{
+.card {
   position: relative;
   margin-bottom: 1.5rem;
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-  --tw-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
+  --tw-bg-opacity: 0.5;
+  background-color: rgb(240, 240, 240 , var(--tw-bg-opacity));
+  --tw-shadow: 0 1px 20px 0 rgba(5, 5, 5, 0.08);
   --tw-shadow-colored: 0 1px 20px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000),
+      var(--tw-shadow);
+  
+  border-radius: 20px;
+  transition: all 0.35s ease;
+  overflow: hidden;
 }
-.card:is([data-pc-theme="dark"] *){
+
+/* Hover Effect */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* Dark Theme */
+.card:is([data-pc-theme="dark"] *) {
   --tw-bg-opacity: 1;
   background-color: rgb(43 44 47 / var(--tw-bg-opacity));
   --tw-shadow-color: none;
   --tw-shadow: var(--tw-shadow-colored);
+}
+
+/* Dark Hover */
+.card:hover:is([data-pc-theme="dark"] *) {
+  box-shadow: 0px 18px 40px rgba(255, 255, 255, 0.08);
 }
 .card .card-header{
   border-bottom-width: 1px;
@@ -3390,12 +3409,12 @@ text:is([data-pc-theme="dark"] *),.apexcharts-theme-light .apexcharts-menu-icon:
   padding: .7rem .75rem;
 }
 .table thead{
-  background-color: rgba(248,249,250,0.5);
+  /* background-color: rgba(248,249,250,0.5); */
   vertical-align: bottom;
 }
 .table thead:is([data-pc-theme="dark"] *){
   --tw-bg-opacity: 1;
-  background-color: rgb(70 72 76 / var(--tw-bg-opacity));
+  /* background-color: rgb(70 72 76 / var(--tw-bg-opacity)); */
 }
 .table thead th{
   border-top-width: 1px;
