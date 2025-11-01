@@ -5,12 +5,16 @@ from django.contrib.auth import views as auth_views
 
 from apps.core.apis.customer import CustomerViewSet
 from apps.core.apis.subscription import SubscriptionViewSet
+from apps.core.apis.coupons_api import CouponViewSet
+
 
 app_name = "core"
 router = DefaultRouter()
 
 router.register(r'customers', CustomerViewSet, basename='customer')
 router.register(r'subscription', SubscriptionViewSet, basename='subscription')
+router.register(r'coupon', CouponViewSet, basename='coupon')
+
 
 urlpatterns = [
     path('', views.home, name='index'),
