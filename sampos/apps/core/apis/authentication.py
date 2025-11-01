@@ -13,6 +13,4 @@ class APIKeyAuthentication(BaseAuthentication):
         if api_key != getattr(settings, "API_KEY", None):
             raise AuthenticationFailed("Invalid API Key")
 
-
-
         return None

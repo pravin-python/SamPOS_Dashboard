@@ -1,4 +1,4 @@
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.decorators import action
 from rest_framework import viewsets
 from django.core.paginator import Paginator
@@ -10,16 +10,20 @@ from apps.subscriptions.serializers import SubscriptionSerializer
 class SubscriptionViewSet(viewsets.ModelViewSet):
     queryset = Subscription.objects.all()
     serializer_class = SubscriptionSerializer
-    permission_classes = [IsAuthenticated]  # Default rule
+    permission_classes = [IsAuthenticated]
 
     def get_permissions(self):
-        if self.action == 'subscription_lists':
+        if self.action in ['subscription_lists']:
             return [AllowAny()]
-        return [IsAuthenticated()]
+
+        if self.action in ['subscription_save', 'toggle_status', 'subscription_delete']:
+            return [IsAdminUser()]
+
+        return super().get_permissions()
 
     @action(detail=False, methods=['get'], url_path='lists')
     def subscription_lists(self, request):
-        per_page = int(request.GET.get('per_page', 10))
+        per_page = int(request.GET.get('per_page', 12))
         page = int(request.GET.get('page', 1))
 
         subscription = Subscription.objects.all()
@@ -37,18 +41,72 @@ class SubscriptionViewSet(viewsets.ModelViewSet):
             "data": serializer.data,
         })
 
-    @action(detail=False, methods=['post'], url_path='create')
-    def subscription_create(self, request):
-        serializer = self.get_serializer(data=request.data)
+    @action(detail=False, methods=['post'], url_path='save')
+    def subscription_save(self, request):
+        subscription_id = request.data.get('id')
+
+        if subscription_id:
+            try:
+                instance = Subscription.objects.get(id=subscription_id)
+            except Subscription.DoesNotExist:
+                return Response({
+                    "status": False,
+                    "message": "Subscription not found"
+                }, status=404)
+
+            serializer = self.get_serializer(instance, data=request.data, partial=True)
+
+        else:
+            serializer = self.get_serializer(data=request.data)
+
         if serializer.is_valid():
+            type = "Update" if subscription_id else "Insert"
             serializer.save()
             return Response({
                 "status": True,
-                "message": "Subscription created successfully",
-                "data": serializer.data
+                "message": f"Subscription {type} successfully",
+                "data": serializer.data,
+                "is_update": bool(subscription_id)
             })
+
         return Response({
             "status": False,
-            "message": "Validation failed",
+            "message": "Validation error",
             "errors": serializer.errors
         }, status=400)
+
+    @action(detail=True, methods=['post'], url_path='toggle-subscription-status')
+    def toggle_status(self, request, pk=None):
+        try:
+            subscription = self.get_object()
+            subscription.status = 'inactive' if subscription.status == 'active' else 'active'
+            subscription.save()
+
+            return Response({
+                "status": True,
+                "message": f"{subscription.name} Subscription status updated to {subscription.status}",
+                "subscription_id": subscription.id,
+                "new_status": subscription.status
+            })
+
+        except Subscription.DoesNotExist:
+            return Response({
+                "status": False,
+                "message": "Subscription not found"
+            }, status=404)
+
+    @action(detail=True, methods=['delete'], url_path='delete')
+    def subscription_delete(self, request, pk=None):
+        try:
+            subscription = self.get_object()
+            subscription.delete()
+            return Response({
+                "status": True,
+                "message": f"{subscription.name} Subscription deleted successfully",
+                "subscription_id": pk
+            })
+        except Subscription.DoesNotExist:
+            return Response({
+                "status": False,
+                "message": "Subscription not found"
+            }, status=404)
