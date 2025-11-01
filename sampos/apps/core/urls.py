@@ -5,7 +5,7 @@ from django.contrib.auth import views as auth_views
 
 from apps.core.apis.customer import CustomerViewSet
 from apps.core.apis.subscription import SubscriptionViewSet
-from apps.core.apis.coupons_api import CouponViewSet
+from apps.core.apis.coupons import CouponViewSet
 
 
 app_name = "core"
