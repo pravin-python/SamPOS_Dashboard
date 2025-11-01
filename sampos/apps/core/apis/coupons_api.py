@@ -19,7 +19,7 @@ class CouponViewSet(viewsets.ModelViewSet):
         if self.action in ['coupon_save', 'toggle_coupon_status', 'coupon_delete']:
             return [IsAuthenticated()]
 
-        # return super().get_permissions()
+        return super().get_permissions()
 
     @action(detail=False, methods=['get'], url_path='lists')
     def coupon_list(self, request):
