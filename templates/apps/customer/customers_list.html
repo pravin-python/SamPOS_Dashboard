@@ -1,209 +1,131 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
-{% block title %} Customers {% endblock title %}
-{% block breadcrumbs %}
-<!-- [ breadcrumb ] start -->
-<div class="page-header">
-  <div class="page-block">
-    <div class="page-header-title">
-      <h5 class="mb-5 font-medium">Customers</h5>
-    </div>
-    <ul class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{% url 'core:index'%}" class="text-decoration-none">Home</a></li>
-      <li class="breadcrumb-item" aria-current="page">Customers</li>
-    </ul>
-  </div>
-</div>
-<!-- [ breadcrumb ] end -->
-{% endblock breadcrumbs %}
+{% block title %}
+  Customers
+{% endblock %}
 
 {% block content %}
-<!-- [ Main Content ] start -->
-<div class="grid grid-cols-12 gap-x-6">
-  <div class="col-span-12">
-    <div class="card">
-      <!-- Card Header -->
-      <div class="card-header d-flex justify-content-between align-items-center flex-wrap">
-        <h5 class="mb-0">Customer List</h5>
-        <div class="header-actions d-flex align-items-center gap-3 mt-2 mt-md-0">
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
-            + Add Customer
-          </button>
-          <section class="filter-section me-3">
-            <select id="filter-type">
-              <option value="all">User Type</option>
-              <option value="dealer">Dealer</option>
-              <option value="distributor">Distributor</option>
-              <option value="retailer">Retailer</option>
-            </select>
-          </section>
-          <section class="filter-section me-3">
-            <select id="filter-type">
-              <option value="all">Subscription Type</option>
-              <option value="pro">Pro</option>
-              <option value="basic">Basic</option>
-              <option value="enterprise">Enterprise</option>
-            </select>
-          </section>
-        </div>
+  <!-- ======================================= -->
+  <!-- == CUSTOMERS PAGE == -->
+  <!-- ======================================= -->
+  <div class="page-content">
+    <!-- Page Header -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+      <h2 class="text-2xl font-semibold mb-4 md:mb-0">Customers</h2>
+      <div class="flex space-x-2">
+        <button class="flex items-center px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"><i data-lucide="download" class="w-4 h-4 mr-2"></i> Export</button>
+        <button data-modal-target="add-customer" class="modal-trigger flex items-center px-4 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700"><i data-lucide="plus" class="w-5 h-5 mr-2"></i> Add Customer</button>
       </div>
-      <!-- Card Body -->
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>User</th>
-                <th>Message</th>
-                <th>Date</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="unread">
-                <td>
-                  <img class="rounded-full max-w-10" style="width: 40px"
-                    src="/static/assets/images/user/avatar-1.jpg" alt="activity-user">
-                </td>
-                <td>
-                  <h6 class="mb-1">Isabella Christensen</h6>
-                  <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
-                </td>
-                <td>
-                  <h6 class="text-muted">
-                    <i class="fas fa-circle text-success text-[10px] ltr:mr-4 rtl:ml-4"></i>
-                    11 MAY 12:56
-                  </h6>
-                </td>
-                <td>
-                  <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
-                  <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
-                </td>
-              </tr>
-              <tr class="unread">
-                <td>
-                  <img class="rounded-full max-w-10" style="width: 40px"
-                    src="/static/assets/images/user/avatar-2.jpg" alt="activity-user">
-                </td>
-                <td>
-                  <h6 class="mb-1">Mathilde Andersen</h6>
-                  <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
-                </td>
-                <td>
-                  <h6 class="text-muted">
-                    <i class="fas fa-circle text-danger text-[10px] ltr:mr-4 rtl:ml-4"></i>
-                    11 MAY 10:35
-                  </h6>
-                </td>
-                <td>
-                  <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
-                  <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
-                </td>
-              </tr>
-              <tr class="unread">
-                <td>
-                  <img class="rounded-full max-w-10" style="width: 40px"
-                    src="/static/assets/images/user/avatar-3.jpg" alt="activity-user">
-                </td>
-                <td>
-                  <h6 class="mb-1">Karla Sorensen</h6>
-                  <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
-                </td>
-                <td>
-                  <h6 class="text-muted">
-                    <i class="fas fa-circle text-success text-[10px] ltr:mr-4 rtl:ml-4"></i>
-                    9 MAY 17:38
-                  </h6>
-                </td>
-                <td>
-                  <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
-                  <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
-                </td>
-              </tr>
-              <tr class="unread">
-                <td>
-                  <img class="rounded-full max-w-10" style="width: 40px"
-                    src="/static/assets/images/user/avatar-1.jpg" alt="activity-user">
-                </td>
-                <td>
-                  <h6 class="mb-1">Ida Jorgensen</h6>
-                  <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
-                </td>
-                <td>
-                  <h6 class="text-muted f-w-300">
-                    <i class="fas fa-circle text-danger text-[10px] ltr:mr-4 rtl:ml-4"></i>
-                    19 MAY 12:56
-                  </h6>
-                </td>
-                <td>
-                  <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2 text-decoration-none">Reject</a>
-                  <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px] text-decoration-none">Approve</a>
-                </td>
-              </tr>
-              <tr class="unread">
-                <td>
-                  <img class="rounded-full max-w-10" style="width: 40px"
-                    src="/static/assets/images/user/avatar-2.jpg" alt="activity-user">
-                </td>
-                <td>
-                  <h6 class="mb-1">Albert Andersen</h6>
-                  <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
-                </td>
-                <td>
-                  <h6 class="text-muted">
-                    <i class="fas fa-circle text-success text-[10px] ltr:mr-4 rtl:ml-4"></i>
-                    21 JULY 12:56
-                  </h6>
-                </td>
-                <td>
-                  <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
-                  <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    </div>
 
-      <!-- Pagination Footer -->
-      <div class="card-footer d-flex justify-content-between align-items-center">
-        <small>Showing 2 to 40 of 100 entries</small>
-        <nav>
-          <ul class="pagination pagination-sm mb-0">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-          </ul>
-        </nav>
+    <!-- Filters -->
+    <div class="mb-6 flex flex-wrap gap-4">
+      <select class="p-2 rounded-lg bg-white dark:bg-gray-800 border dark:border-gray-700">
+        <option>All Customers</option>
+        <option>New</option>
+        <option>Returning</option>
+      </select>
+      <select class="p-2 rounded-lg bg-white dark:bg-gray-800 border dark:border-gray-700">
+        <option>Sort by Date</option>
+        <option>Sort by Name</option>
+      </select>
+    </div>
+
+    <!-- Customer Table -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-max">
+          <thead>
+            <tr class="border-b dark:border-gray-700">
+              <th class="p-4 text-left">
+                <input type="checkbox" class="rounded" />
+              </th>
+              <th class="text-left p-4 text-sm font-semibold text-gray-500 dark:text-gray-400">User</th>
+              <th class="text-left p-4 text-sm font-semibold text-gray-500 dark:text-gray-400">Email</th>
+              <th class="text-left p-4 text-sm font-semibold text-gray-500 dark:text-gray-400">Phone</th>
+              <th class="text-left p-4 text-sm font-semibold text-gray-500 dark:text-gray-400">Total Spent</th>
+              <th class="text-left p-4 text-sm font-semibold text-gray-500 dark:text-gray-400">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-4">
+                <input type="checkbox" class="rounded" />
+              </td>
+              <td class="p-4">
+                <div class="flex items-center space-x-3">
+                  <img src="https://placehold.co/40x40/E2E8F0/4A5568?text=JD" alt="User" class="w-10 h-10 rounded-full" />
+                  <div>
+                    <div class="font-semibold">John Doe</div>
+                    <div class="text-xs text-gray-500">Joined Jan 15, 2025</div>
+                  </div>
+                </div>
+              </td>
+              <td class="p-4">john.doe@example.com</td>
+              <td class="p-4">(123) 456-7890</td>
+              <td class="p-4">$1,250.00</td>
+              <td class="p-4">
+                <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="edit" class="w-5 h-5 text-blue-500"></i></button>
+                <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="trash-2" class="w-5 h-5 text-red-500"></i></button>
+              </td>
+            </tr>
+            <tr>
+              <td class="p-4">
+                <input type="checkbox" class="rounded" />
+              </td>
+              <td class="p-4">
+                <div class="flex items-center space-x-3">
+                  <img src="https://placehold.co/40x40/FCE7F3/EC4899?text=JS" alt="User" class="w-10 h-10 rounded-full" />
+                  <div>
+                    <div class="font-semibold">Jane Smith</div>
+                    <div class="text-xs text-gray-500">Joined Feb 02, 2025</div>
+                  </div>
+                </div>
+              </td>
+              <td class="p-4">jane.smith@example.com</td>
+              <td class="p-4">(987) 654-3210</td>
+              <td class="p-4">$820.50</td>
+              <td class="p-4">
+                <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="edit" class="w-5 h-5 text-blue-500"></i></button>
+                <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="trash-2" class="w-5 h-5 text-red-500"></i></button>
+              </td>
+            </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+      </div>
+      <!-- Pagination -->
+      <div class="flex justify-between items-center p-4 border-t dark:border-gray-700">
+        <span class="text-sm text-gray-500 dark:text-gray-400">Showing 1-10 of 100</span>
+        <div class="flex space-x-1">
+          <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+          <button class="px-4 py-2 rounded-md bg-blue-600 text-white">1</button>
+          <button class="px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700">2</button>
+          <button class="px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700">3</button>
+          <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="addCustomerModal" tabindex="-1" aria-labelledby="addCustomerModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addCustomerModalLabel">Add Customer</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!-- Yaha Apna Form ya Content -->
-        <input type="text" class="form-control mb-2" placeholder="Customer Name">
-        <input type="email" class="form-control mb-2" placeholder="Email">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save Customer</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- [ Main Content ] end -->
-{% endblock content %}
+  <template id="modal-template-add-customer">
+    <form class="space-y-4">
+        <div>
+            <label for="customer-name" class="block text-sm font-medium mb-1">Full Name</label>
+            <input type="text" id="customer-name" placeholder="John Doe" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+        </div>
+        <div>
+            <label for="customer-email" class="block text-sm font-medium mb-1">Email Address</label>
+            <input type="email" id="customer-email" placeholder="john@example.com" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+        </div>
+        <div>
+            <label for="customer-phone" class="block text-sm font-medium mb-1">Phone Number</label>
+            <input type="tel" id="customer-phone" placeholder="(123) 456-7890" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+        </div>
+        <div>
+            <label for="customer-address" class="block text-sm font-medium mb-1">Address</label>
+            <textarea id="customer-address" rows="3" placeholder="123 Main St, Anytown, USA" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none"></textarea>
+        </div>
+    </form>
+</template>
+  <!-- [ Main Content ] end -->
+{% endblock %}

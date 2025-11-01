@@ -1,387 +1,1195 @@
-<!doctype html>
-<html lang="en" @@bodySetup>
-  <!-- [Head] start -->
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS Master - Admin Dashboard</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        // Configuration for Tailwind CSS
+        tailwind.config = {
+            darkMode: 'class', // Enable dark mode using the 'class' strategy
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'], // Set Inter as the default sans-serif font
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <style>
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c0c0c0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a0a0a0;
+        }
+        
+        /* Custom scrollbar for dark mode */
+        .dark ::-webkit-scrollbar-track {
+            background: #2d3748; /* dark:bg-gray-700 */
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #4a5568; /* dark:bg-gray-600 */
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #718096; /* dark:bg-gray-500 */
+        }
 
-  <head>
-    @@include('../layouts/head-page-meta.html', {'title': 'Home'})
-    @@include('../layouts/head-css.html')
-  </head>
-  <!-- [Head] end -->
-  <!-- [Body] Start -->
+        /* Hide number input spinners */
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-100 dark:bg-gray-950 text-gray-900 dark:text-gray-100 antialiased">
 
-  <body>
-    @@include('../layouts/layout-vertical.html')
+    <!-- App Container -->
+    <div class="flex min-h-screen">
+        
+        <!-- Sidebar Overlay (for mobile) -->
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-30 hidden lg:hidden"></div>
 
-    <!-- [ Main Content ] start -->
-    <div class="pc-container">
-      <div class="pc-content">
-        @@include('../layouts/breadcrumb.html', {'breadcrumb-item': 'Dashboard', 'breadcrumb-item-active': 'Default'})
-        <!-- [ Main Content ] start -->
-        <div class="grid grid-cols-12 gap-x-6">
-          <div class="col-span-12 xl:col-span-4 md:col-span-6">
-            <div class="card">
-              <div class="card-header !pb-0 !border-b-0">
-                <h5>Daily Sales</h5>
-              </div>
-              <div class="card-body">
-                <div class="flex items-center justify-between gap-3 flex-wrap">
-                  <h3 class="font-light flex items-center mb-0">
-                    <i class="feather icon-arrow-up text-success-500 text-[30px] mr-1.5"></i>
-                    $ 249.95
-                  </h3>
-                  <p class="mb-0">67%</p>
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed top-0 left-0 h-screen w-64 bg-white dark:bg-gray-900 shadow-lg z-40 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+            <!-- Logo -->
+            <div class="flex items-center justify-center h-16 border-b border-gray-200 dark:border-gray-800">
+                <div class="flex items-center space-x-2">
+                    <span class="p-2 bg-blue-600 rounded-lg">
+                        <i data-lucide="layout-grid" class="w-6 h-6 text-white"></i>
+                    </span>
+                    <h1 class="text-2xl font-bold text-blue-600 dark:text-blue-500">POS Master</h1>
                 </div>
-                <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mt-6 dark:bg-themedark-bodybg">
-                  <div class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar"
-                    style="width: 75%"></div>
-                </div>
-              </div>
             </div>
-          </div>
-          <div class="col-span-12 xl:col-span-4 md:col-span-6">
-            <div class="card">
-              <div class="card-header !pb-0 !border-b-0">
-                <h5>Monthly Sales</h5>
-              </div>
-              <div class="card-body">
-                <div class="flex items-center justify-between gap-3 flex-wrap">
-                  <h3 class="font-light flex items-center mb-0">
-                    <i class="feather icon-arrow-down text-danger-500 text-[30px] mr-1.5"></i>
-                    $ 2.942.32
-                  </h3>
-                  <p class="mb-0">36%</p>
-                </div>
-                <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mt-6 dark:bg-themedark-bodybg">
-                  <div class="bg-theme-bg-2 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar"
-                    style="width: 35%"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-span-12 xl:col-span-4">
-            <div class="card">
-              <div class="card-header !pb-0 !border-b-0">
-                <h5>Yearly Sales</h5>
-              </div>
-              <div class="card-body">
-                <div class="flex items-center justify-between gap-3 flex-wrap">
-                  <h3 class="font-light flex items-center mb-0">
-                    <i class="feather icon-arrow-up text-success-500 text-[30px] mr-1.5"></i>
-                    $8.638.32
-                  </h3>
-                  <p class="mb-0">80%</p>
-                </div>
-                <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mt-6 dark:bg-themedark-bodybg">
-                  <div class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar"
-                    style="width: 80%"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-span-12 xl:col-span-4">
-            <div class="card card-social">
-              <div class="card-body border-b border-theme-border dark:border-themedark-border">
-                <div class="flex items-center justify-center">
-                  <div class="shrink-0">
-                    <i class="fab fa-facebook-f text-primary-500 text-[36px]"></i>
-                  </div>
-                  <div class="grow ltr:text-right rtl:text-left">
-                    <h3 class="mb-2">12,281</h3>
-                    <h5 class="text-success-500 mb-0">+7.2% <span class="text-muted">Total Likes</span></h5>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="grid grid-cols-12 gap-x-6">
-                  <div class="col-span-6">
-                    <h6 class="text-center mb-2.5"><span class="text-muted m-r-5">Target:</span>35,098</h6>
-                    <div class="w-full bg-theme-bodybg rounded-lg h-1.5 dark:bg-themedark-bodybg">
-                      <div class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar" style="width: 60%"></div>
+
+            <!-- Navigation -->
+            <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto" style="height: calc(100vh - 4rem);">
+                <a href="#" data-page="dashboard" class="nav-link flex items-center p-3 rounded-lg transition-colors duration-200">
+                    <i data-lucide="home" class="w-5 h-5 mr-3"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" data-page="pos" class="nav-link flex items-center p-3 rounded-lg transition-colors duration-200">
+                    <i data-lucide="monitor-smartphone" class="w-5 h-5 mr-3"></i>
+                    <span>POS Terminal</span>
+                </a>
+                <a href="#" data-page="orders" class="nav-link flex items-center p-3 rounded-lg transition-colors duration-200">
+                    <i data-lucide="shopping-cart" class="w-5 h-5 mr-3"></i>
+                    <span>Orders</span>
+                </a>
+                <a href="#" data-page="products" class="nav-link flex items-center p-3 rounded-lg transition-colors duration-200">
+                    <i data-lucide="package" class="w-5 h-5 mr-3"></i>
+                    <span>Products</span>
+                </a>
+                <a href="#" data-page="customers" class="nav-link flex items-center p-3 rounded-lg transition-colors duration-200">
+                    <i data-lucide="users" class="w-5 h-5 mr-3"></i>
+                    <span>Customers</span>
+                </a>
+                <a href="#" data-page="inventory" class="nav-link flex items-center p-3 rounded-lg transition-colors duration-200">
+                    <i data-lucide="archive" class="w-5 h-5 mr-3"></i>
+                    <span>Inventory</span>
+                </a>
+                <a href="#" data-page="subscriptions" class="nav-link flex items-center p-3 rounded-lg transition-colors duration-200">
+                    <i data-lucide="calendar-clock" class="w-5 h-5 mr-3"></i>
+                    <span>Subscriptions</span>
+                </a>
+                <a href="#" data-page="coupons" class="nav-link flex items-center p-3 rounded-lg transition-colors duration-200">
+                    <i data-lucide="ticket" class="w-5 h-5 mr-3"></i>
+                    <span>Coupons</span>
+                </a>
+                <a href="#" data-page="users" class="nav-link flex items-center p-3 rounded-lg transition-colors duration-200">
+                    <i data-lucide="user-cog" class="w-5 h-5 mr-3"></i>
+                    <span>Manage Users</span>
+                </a>
+                <a href="#" data-page="reports" class="nav-link flex items-center p-3 rounded-lg transition-colors duration-200">
+                    <i data-lucide="bar-chart-2" class="w-5 h-5 mr-3"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="#" data-page="settings" class="nav-link flex items-center p-3 rounded-lg transition-colors duration-200">
+                    <i data-lucide="settings" class="w-5 h-5 mr-3"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 lg:ml-64 transition-all duration-300 ease-in-out">
+            <!-- Header -->
+            <header class="sticky top-0 bg-white/80 dark:bg-gray-950/80 backdrop-blur-lg shadow-sm z-20">
+                <div class="flex items-center justify-between h-16 px-4 md:px-6">
+                    <!-- Left Side: Hamburger & Breadcrumbs -->
+                    <div class="flex items-center space-x-4">
+                        <!-- Hamburger Menu (Mobile) -->
+                        <button id="hamburger-btn" class="lg:hidden p-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
+                            <i data-lucide="menu" class="w-6 h-6"></i>
+                        </button>
+                        
+                        <!-- Breadcrumbs -->
+                        <div class="hidden md:block text-sm text-gray-500 dark:text-gray-400">
+                            <span id="breadcrumbs">Home / Dashboard</span>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-span-6">
-                    <h6 class="text-center mb-2.5"><span class="text-muted m-r-5">Duration:</span>350</h6>
-                    <div class="w-full bg-theme-bodybg rounded-lg h-1.5 dark:bg-themedark-bodybg">
-                      <div class="bg-theme-bg-2 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar" style="width: 45%"></div>
+
+                    <!-- Right Side: Search, Toggle, Notifications, User -->
+                    <div class="flex items-center space-x-4 md:space-x-6">
+                        <!-- Search Bar -->
+                        <div class="relative hidden md:block">
+                            <input type="text" placeholder="Search..." class="w-64 pl-10 pr-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+                            <i data-lucide="search" class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+                        </div>
+
+                        <!-- Light/Dark Mode Toggle -->
+                        <div>
+                            <label for="dark-mode-toggle" class="flex items-center cursor-pointer">
+                                <div class="relative">
+                                    <input type="checkbox" id="dark-mode-toggle" class="sr-only">
+                                    <div class="block w-10 h-6 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
+                                    <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform"></div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Notifications -->
+                        <div class="relative">
+                            <button id="notification-btn" class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
+                                <i data-lucide="bell" class="w-6 h-6"></i>
+                                <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                            </button>
+                            <!-- Notification Dropdown -->
+                            <div id="notification-dropdown" class="absolute right-0 top-12 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-xl border dark:border-gray-700 p-4 hidden">
+                                <h4 class="font-semibold mb-2">Notifications</h4>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start space-x-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
+                                        <div class="p-2 bg-green-100 dark:bg-green-900 rounded-full"><i data-lucide="shopping-cart" class="w-5 h-5 text-green-500"></i></div>
+                                        <div>
+                                            <p class="text-sm">New order #12345 received.</p>
+                                            <span class="text-xs text-gray-400">2 minutes ago</span>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start space-x-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
+                                        <div class="p-2 bg-red-100 dark:bg-red-900 rounded-full"><i data-lucide="package-x" class="w-5 h-5 text-red-500"></i></div>
+                                        <div>
+                                            <p class="text-sm">Product "Coffee Beans" is low on stock.</p>
+                                            <span class="text-xs text-gray-400">1 hour ago</span>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start space-x-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
+                                        <div class="p-2 bg-blue-100 dark:bg-blue-900 rounded-full"><i data-lucide="user-plus" class="w-5 h-5 text-blue-500"></i></div>
+                                        <div>
+                                            <p class="text-sm">New customer "Jane Doe" registered.</p>
+                                            <span class="text-xs text-gray-400">3 hours ago</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <button class="w-full text-center mt-4 text-sm text-blue-500 hover:underline">View All Notifications</button>
+                            </div>
+                        </div>
+
+                        <!-- User Profile -->
+                        <div class="relative">
+                            <button id="user-btn" class="flex items-center space-x-2">
+                                <img src="https://placehold.co/40x40/E2E8F0/4A5568?text=A" alt="User" class="w-10 h-10 rounded-full border-2 border-transparent hover:border-blue-500">
+                                <div class="hidden md:block text-left">
+                                    <span class="font-semibold text-sm">Admin User</span>
+                                    <span class="block text-xs text-gray-500">Super Admin</span>
+                                </div>
+                            </button>
+                            <!-- User Dropdown -->
+                            <div id="user-dropdown" class="absolute right-0 top-12 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-xl border dark:border-gray-700 py-2 hidden">
+                                <a href="#" class="flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <i data-lucide="user" class="w-4 h-4 mr-2"></i> Profile
+                                </a>
+                                <a href="#" data-page="settings" class="nav-link flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <i data-lucide="settings" class="w-4 h-4 mr-2"></i> Settings
+                                </a>
+                                <hr class="my-2 border-gray-200 dark:border-gray-700">
+                                <a href="#" class="flex items-center px-4 py-2 text-sm text-red-500 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <i data-lucide="log-out" class="w-4 h-4 mr-2"></i> Logout
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-span-12 xl:col-span-4 md:col-span-6">
-            <div class="card card-social">
-              <div class="card-body border-b border-theme-border dark:border-themedark-border">
-                <div class="flex items-center justify-center">
-                  <div class="shrink-0">
-                    <i class="fab fa-twitter text-primary-500 text-[36px]"></i>
-                  </div>
-                  <div class="grow ltr:text-right rtl:text-left">
-                    <h3 class="mb-2">11,200</h3>
-                    <h5 class="text-purple-500 mb-0">+6.2% <span class="text-muted">Total Likes</span></h5>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="grid grid-cols-12 gap-x-6">
-                  <div class="col-span-6">
-                    <h6 class="text-center mb-2.5"><span class="text-muted m-r-5">Target:</span>34,185</h6>
-                    <div class="w-full bg-theme-bodybg rounded-lg h-1.5 dark:bg-themedark-bodybg">
-                      <div class="bg-success-500 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar" style="width: 40%"></div>
+            </header>
+
+            <!-- Page Content Area -->
+            <div class="p-4 md:p-6 lg:p-8">
+                
+                <!-- ======================================= -->
+                <!-- == DASHBOARD PAGE (Default) == -->
+                <!-- ======================================= -->
+                <div id="page-dashboard" class="page-content">
+                    <!-- Stats Cards Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+                        <!-- Card 1: Daily Sales -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex flex-col">
+                                    <span class="text-gray-500 dark:text-gray-400 text-sm">Daily Sales</span>
+                                    <span class="text-3xl font-bold">$1,450.80</span>
+                                </div>
+                                <div class="p-3 bg-blue-100 dark:bg-blue-900 rounded-lg">
+                                    <i data-lucide="dollar-sign" class="w-6 h-6 text-blue-500"></i>
+                                </div>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 75%"></div>
+                            </div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400 mt-2 block">+15% from yesterday</span>
+                        </div>
+
+                        <!-- Card 2: Monthly Sales -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex flex-col">
+                                    <span class="text-gray-500 dark:text-gray-400 text-sm">Monthly Sales</span>
+                                    <span class="text-3xl font-bold">$32,800.00</span>
+                                </div>
+                                <div class="p-3 bg-green-100 dark:bg-green-900 rounded-lg">
+                                    <i data-lucide="credit-card" class="w-6 h-6 text-green-500"></i>
+                                </div>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 60%"></div>
+                            </div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400 mt-2 block">+8% from last month</span>
+                        </div>
+
+                        <!-- Card 3: Total Orders -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex flex-col">
+                                    <span class="text-gray-500 dark:text-gray-400 text-sm">Total Orders</span>
+                                    <span class="text-3xl font-bold">8,920</span>
+                                </div>
+                                <div class="p-3 bg-yellow-100 dark:bg-yellow-900 rounded-lg">
+                                    <i data-lucide="shopping-bag" class="w-6 h-6 text-yellow-500"></i>
+                                </div>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 45%"></div>
+                            </div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400 mt-2 block">+120 this week</span>
+                        </div>
+
+                        <!-- Card 4: New Customers -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex flex-col">
+                                    <span class="text-gray-500 dark:text-gray-400 text-sm">New Customers</span>
+                                    <span class="text-3xl font-bold">215</span>
+                                </div>
+                                <div class="p-3 bg-indigo-100 dark:bg-indigo-900 rounded-lg">
+                                    <i data-lucide="user-plus" class="w-6 h-6 text-indigo-500"></i>
+                                </div>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="bg-indigo-500 h-2 rounded-full" style="width: 80%"></div>
+                            </div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400 mt-2 block">+30 this month</span>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-span-6">
-                    <h6 class="text-center mb-2.5"><span class="text-muted m-r-5">Duration:</span>800</h6>
-                    <div class="w-full bg-theme-bodybg rounded-lg h-1.5 dark:bg-themedark-bodybg">
-                      <div class="bg-primary-500 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar" style="width: 70%"></div>
+
+                    <!-- Main Content Grid -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <!-- Left Column: Recent Orders -->
+                        <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                            <h3 class="text-xl font-semibold mb-4">Recent Orders</h3>
+                            <div class="overflow-x-auto">
+                                <table class="w-full min-w-max">
+                                    <thead>
+                                        <tr class="border-b dark:border-gray-700">
+                                            <th class="text-left p-4 text-sm font-semibold text-gray-500 dark:text-gray-400">Order ID</th>
+                                            <th class="text-left p-4 text-sm font-semibold text-gray-500 dark:text-gray-400">Customer</th>
+                                            <th class="text-left p-4 text-sm font-semibold text-gray-500 dark:text-gray-400">Status</th>
+                                            <th class="text-left p-4 text-sm font-semibold text-gray-500 dark:text-gray-400">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="p-4">#8921</td>
+                                            <td class="p-4">John Doe</td>
+                                            <td class="p-4">
+                                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">Completed</span>
+                                            </td>
+                                            <td class="p-4">$45.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-4">#8922</td>
+                                            <td class="p-4">Jane Smith</td>
+                                            <td class="p-4">
+                                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300">Pending</span>
+                                            </td>
+                                            <td class="p-4">$22.50</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-4">#8923</td>
+                                            <td class="p-4">Mike Johnson</td>
+                                            <td class="p-4">
+                                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300">Processing</span>
+                                            </td>
+                                            <td class="p-4">$105.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-4">#8924</td>
+                                            <td class="p-4">Sarah Lee</td>
+                                            <td class="p-4">
+                                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300">Cancelled</span>
+                                            </td>
+                                            <td class="p-4">$15.75</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-4">#8925</td>
+                                            <td class="p-4">David Chen</td>
+                                            <td class="p-4">
+                                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">Completed</span>
+                                            </td>
+                                            <td class="p-4">$88.20</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Top Selling Products -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                            <h3 class="text-xl font-semibold mb-4">Top Selling Products</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-center space-x-4">
+                                    <img src="https://placehold.co/64x64/E0F2FE/0EA5E9?text=Coffee" alt="Product" class="w-16 h-16 rounded-lg object-cover">
+                                    <div>
+                                        <h4 class="font-semibold">Espresso</h4>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">120 units sold</span>
+                                    </div>
+                                    <span class="ml-auto font-semibold">$360.00</span>
+                                </li>
+                                <li class="flex items-center space-x-4">
+                                    <img src="https://placehold.co/64x64/FEF3C7/F59E0B?text=Pastry" alt="Product" class="w-16 h-16 rounded-lg object-cover">
+                                    <div>
+                                        <h4 class="font-semibold">Croissant</h4>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">95 units sold</span>
+                                    </div>
+                                    <span class="ml-auto font-semibold">$285.00</span>
+                                </li>
+                                <li class="flex items-center space-x-4">
+                                    <img src="https://placehold.co/64x64/FCE7F3/EC4899?text=Cake" alt="Product" class="w-16 h-16 rounded-lg object-cover">
+                                    <div>
+                                        <h4 class="font-semibold">Red Velvet Muffin</h4>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">80 units sold</span>
+                                    </div>
+                                    <span class="ml-auto font-semibold">$320.00</span>
+                                </li>
+                                <li class="flex items-center space-x-4">
+                                    <img src="https://placehold.co/64x64/DCFCE7/22C55E?text=Tea" alt="Product" class="w-16 h-16 rounded-lg object-cover">
+                                    <div>
+                                        <h4 class="font-semibold">Matcha Latte</h4>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">72 units sold</span>
+                                    </div>
+                                    <span class="ml-auto font-semibold">$324.00</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-span-12 xl:col-span-4 md:col-span-6">
-            <div class="card card-social">
-              <div class="card-body border-b border-theme-border dark:border-themedark-border">
-                <div class="flex items-center justify-center">
-                  <div class="shrink-0">
-                    <i class="fab fa-google-plus-g text-danger-500 text-[36px]"></i>
-                  </div>
-                  <div class="grow ltr:text-right rtl:text-left">
-                    <h3 class="mb-2">10,500</h3>
-                    <h5 class="text-purple-500 mb-0">+5.9% <span class="text-muted">Total Likes</span></h5>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="grid grid-cols-12 gap-x-6">
-                  <div class="col-span-6">
-                    <h6 class="text-center mb-2.5"><span class="text-muted m-r-5">Target:</span>25,998</h6>
-                    <div class="w-full bg-theme-bodybg rounded-lg h-1.5 dark:bg-themedark-bodybg">
-                      <div class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar" style="width: 80%"></div>
-                    </div>
-                  </div>
-                  <div class="col-span-6">
-                    <h6 class="text-center mb-2.5"><span class="text-muted m-r-5">Duration:</span>900</h6>
-                    <div class="w-full bg-theme-bodybg rounded-lg h-1.5 dark:bg-themedark-bodybg">
-                      <div class="bg-theme-bg-2 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar" style="width: 50%"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-span-12 xl:col-span-4 md:col-span-6">
-            <div class="card user-list">
-              <div class="card-header">
-                <h5>Rating</h5>
-              </div>
-              <div class="card-body">
-                <div class="flex items-center justify-between gap-1 mb-5">
-                  <h2 class="font-light flex items-center m-0">
-                    4.7
-                    <i class="fas fa-star text-[10px] ml-2.5 text-warning-500"></i>
-                  </h2>
-                  <h6 class="flex items-center m-0">
-                    0.4
-                    <i class="fas fa-caret-up text-success text-[22px] ml-2.5"></i>
-                  </h6>
                 </div>
 
-                <div class="flex items-center justify-between gap-2 mb-2">
-                  <h6 class="flex items-center gap-1">
-                    <i class="fas fa-star text-[10px] mr-2.5 text-warning-500"></i>
-                    5
-                  </h6>
-                  <h6>384</h6>
-                </div>
-                <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mb-6 mt-3 dark:bg-themedark-bodybg">
-                  <div
-                    class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]"
-                    role="progressbar"
-                    style="width: 70%"
-                  ></div>
+                <!-- ======================================= -->
+                <!-- == POS TERMINAL PAGE == -->
+                <!-- ======================================= -->
+                <div id="page-pos" class="page-content hidden">
+                    <div class="flex flex-col lg:flex-row gap-6" style="height: calc(100vh - 10rem);">
+                        <!-- Left Side: Product Grid -->
+                        <div class="lg:w-2/3 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 overflow-y-auto">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Products</h3>
+                                <div class="flex space-x-2">
+                                    <input type="text" placeholder="Search products..." class="w-full md:w-64 pl-10 pr-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-900 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+                                    <i data-lucide="search" class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                                <!-- Sample Product -->
+                                <div class="pos-product-card bg-gray-50 dark:bg-gray-800/50 border dark:border-gray-700 rounded-lg p-4 text-center cursor-pointer hover:shadow-md hover:scale-105 transition-all">
+                                    <img src="https://placehold.co/100x100/E0F2FE/0EA5E9?text=Espresso" alt="Product" class="w-full h-24 object-cover rounded-md mb-2">
+                                    <h5 class="font-semibold text-sm">Espresso</h5>
+                                    <span class="text-xs text-gray-500">$3.00</span>
+                                </div>
+                                <div class="pos-product-card bg-gray-50 dark:bg-gray-800/50 border dark:border-gray-700 rounded-lg p-4 text-center cursor-pointer hover:shadow-md hover:scale-105 transition-all">
+                                    <img src="https://placehold.co/100x100/E0F2FE/0EA5E9?text=Latte" alt="Product" class="w-full h-24 object-cover rounded-md mb-2">
+                                    <h5 class="font-semibold text-sm">Latte</h5>
+                                    <span class="text-xs text-gray-500">$4.50</span>
+                                </div>
+                                <div class="pos-product-card bg-gray-50 dark:bg-gray-800/50 border dark:border-gray-700 rounded-lg p-4 text-center cursor-pointer hover:shadow-md hover:scale-105 transition-all">
+                                    <img src="https://placehold.co/100x100/E0F2FE/0EA5E9?text=Cappuccino" alt="Product" class="w-full h-24 object-cover rounded-md mb-2">
+                                    <h5 class="font-semibold text-sm">Cappuccino</h5>
+                                    <span class="text-xs text-gray-500">$4.50</span>
+                                </div>
+                                <div class="pos-product-card bg-gray-50 dark:bg-gray-800/50 border dark:border-gray-700 rounded-lg p-4 text-center cursor-pointer hover:shadow-md hover:scale-105 transition-all">
+                                    <img src="https://placehold.co/100x100/FEF3C7/F59E0B?text=Croissant" alt="Product" class="w-full h-24 object-cover rounded-md mb-2">
+                                    <h5 class="font-semibold text-sm">Croissant</h5>
+                                    <span class="text-xs text-gray-500">$3.00</span>
+                                </div>
+                                <div class="pos-product-card bg-gray-50 dark:bg-gray-800/50 border dark:border-gray-700 rounded-lg p-4 text-center cursor-pointer hover:shadow-md hover:scale-105 transition-all">
+                                    <img src="https://placehold.co/100x100/FCE7F3/EC4899?text=Muffin" alt="Product" class="w-full h-24 object-cover rounded-md mb-2">
+                                    <h5 class="font-semibold text-sm">Blueberry Muffin</h5>
+                                    <span class="text-xs text-gray-500">$3.50</span>
+                                </div>
+                                <div class="pos-product-card bg-gray-50 dark:bg-gray-800/50 border dark:border-gray-700 rounded-lg p-4 text-center cursor-pointer hover:shadow-md hover:scale-105 transition-all">
+                                    <img src="https://placehold.co/100x100/DCFCE7/22C55E?text=Matcha" alt="Product" class="w-full h-24 object-cover rounded-md mb-2">
+                                    <h5 class="font-semibold text-sm">Matcha Latte</h5>
+                                    <span class="text-xs text-gray-500">$5.00</span>
+                                </div>
+                                <div class="pos-product-card bg-gray-50 dark:bg-gray-800/50 border dark:border-gray-700 rounded-lg p-4 text-center cursor-pointer hover:shadow-md hover:scale-105 transition-all">
+                                    <img src="https://placehold.co/100x100/E0F2FE/0EA5E9?text=Mocha" alt="Product" class="w-full h-24 object-cover rounded-md mb-2">
+                                    <h5 class="font-semibold text-sm">Mocha</h5>
+                                    <span class="text-xs text-gray-500">$5.00</span>
+                                </div>
+                                <div class="pos-product-card bg-gray-50 dark:bg-gray-800/50 border dark:border-gray-700 rounded-lg p-4 text-center cursor-pointer hover:shadow-md hover:scale-105 transition-all">
+                                    <img src="https://placehold.co/100x100/FEE2E2/EF4444?text=Bagel" alt="Product" class="w-full h-24 object-cover rounded-md mb-2">
+                                    <h5 class="font-semibold text-sm">Everything Bagel</h5>
+                                    <span class="text-xs text-gray-500">$4.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Side: Bill/Cart -->
+                        <div class="lg:w-1/3 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 flex flex-col">
+                            <h3 class="text-xl font-semibold mb-4 border-b dark:border-gray-700 pb-4">Current Bill</h3>
+                            
+                            <!-- Cart Items -->
+                            <div id="cart-items" class="flex-1 overflow-y-auto space-y-4 pr-2">
+                                <!-- Sample Cart Item -->
+                                <div class="flex items-center space-x-3">
+                                    <img src="https://placehold.co/40x40/E0F2FE/0EA5E9?text=Latte" alt="Item" class="w-10 h-10 rounded-lg">
+                                    <div class="flex-1">
+                                        <h5 class="text-sm font-semibold">Latte</h5>
+                                        <span class="text-xs text-gray-500">$4.50</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <button class="p-1 rounded-md bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">-</button>
+                                        <input type="number" value="1" class="w-10 text-center bg-transparent">
+                                        <button class="p-1 rounded-md bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">+</button>
+                                    </div>
+                                    <span class="font-semibold text-sm w-12 text-right">$4.50</span>
+                                    <button class="text-red-500 hover:text-red-700 dark:hover:text-red-400">
+                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <img src="https://placehold.co/40x40/FEF3C7/F59E0B?text=Croissant" alt="Item" class="w-10 h-10 rounded-lg">
+                                    <div class="flex-1">
+                                        <h5 class="text-sm font-semibold">Croissant</h5>
+                                        <span class="text-xs text-gray-500">$3.00</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <button class="p-1 rounded-md bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">-</button>
+                                        <input type="number" value="2" class="w-10 text-center bg-transparent">
+                                        <button class="p-1 rounded-md bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">+</button>
+                                    </div>
+                                    <span class="font-semibold text-sm w-12 text-right">$6.00</span>
+                                    <button class="text-red-500 hover:text-red-700 dark:hover:text-red-400">
+                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Totals -->
+                            <div class="border-t dark:border-gray-700 pt-6 mt-6 space-y-3">
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-500 dark:text-gray-400">Subtotal</span>
+                                    <span class="font-semibold">$10.50</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-500 dark:text-gray-400">Tax (8%)</span>
+                                    <span class="font-semibold">$0.84</span>
+                                </div>
+                                <div class="flex justify-between text-lg font-bold">
+                                    <span>Total</span>
+                                    <span>$11.34</span>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="grid grid-cols-2 gap-4 mt-6">
+                                <button class="w-full p-3 rounded-lg bg-yellow-500 text-white font-semibold hover:bg-yellow-600">Hold Sale</button>
+                                <button class="w-full p-3 rounded-lg bg-red-500 text-white font-semibold hover:bg-red-600">Cancel</button>
+                            </div>
+                            <button class="w-full p-4 rounded-lg bg-green-500 text-white font-bold text-lg mt-4 hover:bg-green-600">
+                                Checkout
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="flex items-center justify-between gap-2 mb-2">
-                  <h6 class="flex items-center gap-1">
-                    <i class="fas fa-star text-[10px] mr-2.5 text-warning-500"></i>
-                    4
-                  </h6>
-                  <h6>145</h6>
-                </div>
-                <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mb-6 mt-3 dark:bg-themedark-bodybg">
-                  <div
-                    class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]"
-                    role="progressbar"
-                    style="width: 35%"
-                  ></div>
+                <!-- ======================================= -->
+                <!-- == CUSTOMERS PAGE == -->
+                <!-- ======================================= -->
+                <div id="page-customers" class="page-content hidden">
+                    <!-- Page Header -->
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                        <h2 class="text-2xl font-semibold mb-4 md:mb-0">Customers</h2>
+                        <div class="flex space-x-2">
+                            <button class="flex items-center px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">
+                                <i data-lucide="download" class="w-4 h-4 mr-2"></i> Export
+                            </button>
+                            <button data-modal-target="add-customer" class="modal-trigger flex items-center px-4 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700">
+                                <i data-lucide="plus" class="w-5 h-5 mr-2"></i> Add Customer
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filters -->
+                    <div class="mb-6 flex flex-wrap gap-4">
+                        <select class="p-2 rounded-lg bg-white dark:bg-gray-800 border dark:border-gray-700">
+                            <option>All Customers</option>
+                            <option>New</option>
+                            <option>Returning</option>
+                        </select>
+                        <select class="p-2 rounded-lg bg-white dark:bg-gray-800 border dark:border-gray-700">
+                            <option>Sort by Date</option>
+                            <option>Sort by Name</option>
+                        </select>
+                    </div>
+
+                    <!-- Customer Table -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full min-w-max">
+                                <thead>
+                                    <tr class="border-b dark:border-gray-700">
+                                        <th class="p-4 text-left"><input type="checkbox" class="rounded"></th>
+                                        <th class="text-left p-4 text-sm font-semibold text-gray-500 dark:text-gray-400">User</th>
+                                        <th class="text-left p-4 text-sm font-semibold text-gray-500 dark:text-gray-400">Email</th>
+                                        <th class="text-left p-4 text-sm font-semibold text-gray-500 dark:text-gray-400">Phone</th>
+                                        <th class="text-left p-4 text-sm font-semibold text-gray-500 dark:text-gray-400">Total Spent</th>
+                                        <th class="text-left p-4 text-sm font-semibold text-gray-500 dark:text-gray-400">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="p-4"><input type="checkbox" class="rounded"></td>
+                                        <td class="p-4">
+                                            <div class="flex items-center space-x-3">
+                                                <img src="https://placehold.co/40x40/E2E8F0/4A5568?text=JD" alt="User" class="w-10 h-10 rounded-full">
+                                                <div>
+                                                    <div class="font-semibold">John Doe</div>
+                                                    <div class="text-xs text-gray-500">Joined Jan 15, 2025</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="p-4">john.doe@example.com</td>
+                                        <td class="p-4">(123) 456-7890</td>
+                                        <td class="p-4">$1,250.00</td>
+                                        <td class="p-4">
+                                            <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="edit" class="w-5 h-5 text-blue-500"></i></button>
+                                            <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="trash-2" class="w-5 h-5 text-red-500"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-4"><input type="checkbox" class="rounded"></td>
+                                        <td class="p-4">
+                                            <div class="flex items-center space-x-3">
+                                                <img src="https://placehold.co/40x40/FCE7F3/EC4899?text=JS" alt="User" class="w-10 h-10 rounded-full">
+                                                <div>
+                                                    <div class="font-semibold">Jane Smith</div>
+                                                    <div class="text-xs text-gray-500">Joined Feb 02, 2025</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="p-4">jane.smith@example.com</td>
+                                        <td class="p-4">(987) 654-3210</td>
+                                        <td class="p-4">$820.50</td>
+                                        <td class="p-4">
+                                            <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="edit" class="w-5 h-5 text-blue-500"></i></button>
+                                            <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="trash-2" class="w-5 h-5 text-red-500"></i></button>
+                                        </td>
+                                    </tr>
+                                    <!-- Add more rows as needed -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Pagination -->
+                        <div class="flex justify-between items-center p-4 border-t dark:border-gray-700">
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Showing 1-10 of 100</span>
+                            <div class="flex space-x-1">
+                                <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+                                <button class="px-4 py-2 rounded-md bg-blue-600 text-white">1</button>
+                                <button class="px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700">2</button>
+                                <button class="px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700">3</button>
+                                <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="flex items-center justify-between gap-2 mb-2">
-                  <h6 class="flex items-center gap-1">
-                    <i class="fas fa-star text-[10px] mr-2.5 text-warning-500"></i>
-                    3
-                  </h6>
-                  <h6>24</h6>
-                </div>
-                <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mb-6 mt-3 dark:bg-themedark-bodybg">
-                  <div
-                    class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]"
-                    role="progressbar"
-                    style="width: 25%"
-                  ></div>
+                <!-- ======================================= -->
+                <!-- == SUBSCRIPTIONS PAGE == -->
+                <!-- ======================================= -->
+                <div id="page-subscriptions" class="page-content hidden">
+                    <!-- Page Header -->
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-semibold">Subscription Plans</h2>
+                        <button data-modal-target="add-plan" class="modal-trigger flex items-center px-4 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700">
+                            <i data-lucide="plus" class="w-5 h-5 mr-2"></i> Add New Plan
+                        </button>
+                    </div>
+
+                    <!-- Plans Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Plan 1: Basic -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 flex flex-col items-center text-center">
+                            <h3 class="text-lg font-semibold text-gray-500 dark:text-gray-400 uppercase">Basic</h3>
+                            <div class="my-4">
+                                <span class="text-5xl font-bold">$19</span>
+                                <span class="text-gray-500 dark:text-gray-400">/mo</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 mb-6">Ideal for small cafes and new businesses.</p>
+                            <ul class="space-y-3 mb-8 w-full">
+                                <li class="flex items-center"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> 1 Register</li>
+                                <li class="flex items-center"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> Basic Inventory</li>
+                                <li class="flex items-center"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> Email Support</li>
+                                <li class="flex items-center text-gray-400 dark:text-gray-500"><i data-lucide="x-circle" class="w-5 h-5 mr-2"></i> Advanced Reporting</li>
+                            </ul>
+                            <button class="w-full mt-auto px-6 py-3 rounded-lg bg-gray-200 dark:bg-gray-700 font-semibold hover:bg-gray-300 dark:hover:bg-gray-600">Edit Plan</button>
+                        </div>
+
+                        <!-- Plan 2: Pro (Featured) -->
+                        <div class="bg-blue-600 dark:bg-blue-700 text-white rounded-xl shadow-2xl p-8 flex flex-col items-center text-center relative overflow-hidden">
+                            <span class="absolute top-0 right-0 px-4 py-1 bg-yellow-400 text-gray-900 font-semibold text-sm rounded-bl-lg">Popular</span>
+                            <h3 class="text-lg font-semibold uppercase">Pro</h3>
+                            <div class="my-4">
+                                <span class="text-5xl font-bold">$49</span>
+                                <span>/mo</span>
+                            </div>
+                            <p class="mb-6">For growing businesses that need more power.</p>
+                            <ul class="space-y-3 mb-8 w-full">
+                                <li class="flex items-center"><i data-lucide="check-circle" class="w-5 h-5 text-green-300 mr-2"></i> 3 Registers</li>
+                                <li class="flex items-center"><i data-lucide="check-circle" class="w-5 h-5 text-green-300 mr-2"></i> Full Inventory Control</li>
+                                <li class="flex items-center"><i data-lucide="check-circle" class="w-5 h-5 text-green-300 mr-2"></i> Priority Support</li>
+                                <li class="flex items-center"><i data-lucide="check-circle" class="w-5 h-5 text-green-300 mr-2"></i> Advanced Reporting</li>
+                            </ul>
+                            <button class="w-full mt-auto px-6 py-3 rounded-lg bg-white text-blue-600 font-semibold hover:bg-gray-100">Edit Plan</button>
+                        </div>
+
+                        <!-- Plan 3: Enterprise -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 flex flex-col items-center text-center">
+                            <h3 class="text-lg font-semibold text-gray-500 dark:text-gray-400 uppercase">Enterprise</h3>
+                            <div class="my-4">
+                                <span class="text-5xl font-bold">$99</span>
+                                <span class="text-gray-500 dark:text-gray-400">/mo</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 mb-6">For large operations and multi-location shops.</p>
+                            <ul class="space-y-3 mb-8 w-full">
+                                <li class="flex items-center"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> Unlimited Registers</li>
+                                <li class="flex items-center"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> Multi-Location Support</li>
+                                <li class="flex items-center"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> 24/7 Phone Support</li>
+                                <li class="flex items-center"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> API Access</li>
+                            </ul>
+                            <button class="w-full mt-auto px-6 py-3 rounded-lg bg-gray-200 dark:bg-gray-700 font-semibold hover:bg-gray-300 dark:hover:bg-gray-600">Edit Plan</button>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="flex items-center justify-between gap-2 mb-2">
-                  <h6 class="flex items-center gap-1">
-                    <i class="fas fa-star text-[10px] mr-2.5 text-warning-500"></i>
-                    2
-                  </h6>
-                  <h6>1</h6>
+                <!-- ======================================= -->
+                <!-- == COUPONS PAGE == -->
+                <!-- ======================================= -->
+                <div id="page-coupons" class="page-content hidden">
+                    <!-- Page Header -->
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-semibold">Manage Coupons</h2>
+                        <button data-modal-target="add-coupon" class="modal-trigger flex items-center px-4 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700">
+                            <i data-lucide="plus" class="w-5 h-5 mr-2"></i> Create Coupon
+                        </button>
+                    </div>
+
+                    <!-- Coupons Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        <!-- Coupon Card 1 -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 relative overflow-hidden">
+                            <div class="absolute -top-4 -right-4 w-16 h-16 bg-green-500 transform rotate-45"></div>
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-500">SAVE20</h3>
+                                    <p class="text-gray-500 dark:text-gray-400 mb-4">20% off entire order</p>
+                                </div>
+                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">Active</span>
+                            </div>
+                            <div class="text-sm space-y-2 my-4">
+                                <p><strong>Usage:</strong> 45 / 100</p>
+                                <p><strong>Validity:</strong> Dec 31, 2025</p>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="edit" class="w-5 h-5 text-blue-500"></i></button>
+                                <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="power-off" class="w-5 h-5 text-yellow-500"></i></button>
+                                <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="trash-2" class="w-5 h-5 text-red-500"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Coupon Card 2 -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 relative overflow-hidden">
+                            <div class="absolute -top-4 -right-4 w-16 h-16 bg-green-500 transform rotate-45"></div>
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-500">FREECOFFEE</h3>
+                                    <p class="text-gray-500 dark:text-gray-400 mb-4">One free coffee (any size)</p>
+                                </div>
+                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">Active</span>
+                            </div>
+                            <div class="text-sm space-y-2 my-4">
+                                <p><strong>Usage:</strong> 120 / 500</p>
+                                <p><strong>Validity:</strong> Nov 30, 2025</p>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="edit" class="w-5 h-5 text-blue-500"></i></button>
+                                <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="power-off" class="w-5 h-5 text-yellow-500"></i></button>
+                                <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="trash-2" class="w-5 h-5 text-red-500"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Coupon Card 3 (Expired) -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 relative overflow-hidden opacity-60">
+                            <div class="absolute -top-4 -right-4 w-16 h-16 bg-gray-400 transform rotate-45"></div>
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-600 dark:text-gray-500">SUMMER10</h3>
+                                    <p class="text-gray-500 dark:text-gray-400 mb-4">$10 off orders over $50</p>
+                                </div>
+                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-700 dark:bg-gray-900 dark:text-gray-300">Expired</span>
+                            </div>
+                            <div class="text-sm space-y-2 my-4">
+                                <p><strong>Usage:</strong> 250 / 250</p>
+                                <p><strong>Validity:</strong> Aug 31, 2025</p>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="edit" class="w-5 h-5 text-blue-500"></i></button>
+                                <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i data-lucide="trash-2" class="w-5 h-5 text-red-500"></i></button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mb-6 mt-3 dark:bg-themedark-bodybg">
-                  <div
-                    class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]"
-                    role="progressbar"
-                    style="width: 10%"
-                  ></div>
+                
+                <!-- ======================================= -->
+                <!-- == OTHER PAGES (Placeholder) == -->
+                <!-- ======================================= -->
+                <div id="page-orders" class="page-content hidden">
+                    <h2 class="text-2xl font-semibold">Orders</h2>
+                    <p class="mt-4">Orders content goes here...</p>
+                </div>
+                <div id="page-products" class="page-content hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-semibold">Products</h2>
+                        <button data-modal-target="add-product" class="modal-trigger flex items-center px-4 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700">
+                            <i data-lucide="plus" class="w-5 h-5 mr-2"></i> Add Product
+                        </button>
+                    </div>
+                    <p class="mt-4">Products table/grid goes here...</p>
+                </div>
+                <div id="page-inventory" class="page-content hidden">
+                    <h2 class="text-2xl font-semibold">Inventory</h2>
+                    <p class="mt-4">Inventory management content goes here...</p>
+                </div>
+                <div id="page-users" class="page-content hidden">
+                    <h2 class="text-2xl font-semibold">Manage Users</h2>
+                    <p class="mt-4">User management content goes here...</p>
+                </div>
+                <div id="page-reports" class="page-content hidden">
+                    <h2 class="text-2xl font-semibold">Reports</h2>
+                    <p class="mt-4">Reports and analytics go here...</p>
+                </div>
+                <div id="page-settings" class="page-content hidden">
+                    <h2 class="text-2xl font-semibold">Settings</h2>
+                    <p class="mt-4">Settings page content goes here...</p>
                 </div>
 
-                <div class="flex items-center justify-between gap-2 mb-2">
-                  <h6 class="flex items-center gap-1">
-                    <i class="fas fa-star text-[10px] mr-2.5 text-warning-500"></i>
-                    1
-                  </h6>
-                  <h6>0</h6>
-                </div>
-                <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mt-4 dark:bg-themedark-bodybg">
-                  <div
-                    class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]"
-                    role="progressbar"
-                    style="width: 0%"
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-span-12 xl:col-span-8 md:col-span-6">
-            <div class="card table-card">
-              <div class="card-header">
-                <h5>Recent Users</h5>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table table-hover">
-                    <tbody>
-                      <tr class="unread">
-                        <td>
-                          <img class="rounded-full max-w-10" style="width: 40px" src="../assets/images/user/avatar-1.jpg" alt="activity-user" />
-                        </td>
-                        <td>
-                          <h6 class="mb-1">Isabella Christensen</h6>
-                          <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
-                        </td>
-                        <td>
-                          <h6 class="text-muted">
-                            <i class="fas fa-circle text-success text-[10px] ltr:mr-4 rtl:ml-4"></i>
-                            11 MAY 12:56
-                          </h6>
-                        </td>
-                        <td>
-                          <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
-                          <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
-                        </td>
-                      </tr>
-                      <tr class="unread">
-                        <td>
-                          <img class="rounded-full max-w-10" style="width: 40px" src="../assets/images/user/avatar-2.jpg" alt="activity-user" />
-                        </td>
-                        <td>
-                          <h6 class="mb-1">Mathilde Andersen</h6>
-                          <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
-                        </td>
-                        <td>
-                          <h6 class="text-muted">
-                            <i class="fas fa-circle text-danger text-[10px] ltr:mr-4 rtl:ml-4"></i>
-                            11 MAY 10:35
-                          </h6>
-                        </td>
-                        <td>
-                          <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
-                          <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
-                        </td>
-                      </tr>
-                      <tr class="unread">
-                        <td>
-                          <img class="rounded-full max-w-10" style="width: 40px" src="../assets/images/user/avatar-3.jpg" alt="activity-user" />
-                        </td>
-                        <td>
-                          <h6 class="mb-1">Karla Sorensen</h6>
-                          <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
-                        </td>
-                        <td>
-                          <h6 class="text-muted">
-                            <i class="fas fa-circle text-success text-[10px] ltr:mr-4 rtl:ml-4"></i>
-                            9 MAY 17:38
-                          </h6>
-                        </td>
-                        <td>
-                          <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
-                          <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
-                        </td>
-                      </tr>
-                      <tr class="unread">
-                        <td>
-                          <img class="rounded-full max-w-10" style="width: 40px" src="../assets/images/user/avatar-1.jpg" alt="activity-user" />
-                        </td>
-                        <td>
-                          <h6 class="mb-1">Ida Jorgensen</h6>
-                          <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
-                        </td>
-                        <td>
-                          <h6 class="text-muted f-w-300">
-                            <i class="fas fa-circle text-danger text-[10px] ltr:mr-4 rtl:ml-4"></i>
-                            19 MAY 12:56
-                          </h6>
-                        </td>
-                        <td>
-                          <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
-                          <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
-                        </td>
-                      </tr>
-                      <tr class="unread">
-                        <td>
-                          <img class="rounded-full max-w-10" style="width: 40px" src="../assets/images/user/avatar-2.jpg" alt="activity-user" />
-                        </td>
-                        <td>
-                          <h6 class="mb-1">Albert Andersen</h6>
-                          <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
-                        </td>
-                        <td>
-                          <h6 class="text-muted">
-                            <i class="fas fa-circle text-success text-[10px] ltr:mr-4 rtl:ml-4"></i>
-                            21 July 12:56
-                          </h6>
-                        </td>
-                        <td>
-                          <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
-                          <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- [ Main Content ] end -->
-      </div>
+            </div> <!-- End Page Content Area -->
+        </main>
     </div>
-    <!-- [ Main Content ] end -->
-    @@include('../layouts/footer-block.html') 
-    @@include('../layouts/footer-js.html')
-  </body>
-  <!-- [Body] end -->
+
+    <!-- ======================================= -->
+    <!-- == MODAL CONTAINER == -->
+    <!-- ======================================= -->
+    <div id="modal-container" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden">
+        <!-- Modal Overlay -->
+        <div id="modal-overlay" class="absolute inset-0"></div>
+        
+        <!-- Modal Box -->
+        <div id="modal-box" class="relative bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-lg mx-auto transform transition-all scale-95 opacity-0">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center p-6 border-b dark:border-gray-700">
+                <h3 id="modal-title" class="text-xl font-semibold">Modal Title</h3>
+                <button id="modal-close-btn" class="p-2 rounded-md text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            
+            <!-- Modal Body -->
+            <div id="modal-body" class="p-6 max-h-[60vh] overflow-y-auto">
+                <!-- Content will be injected here -->
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="flex justify-end items-center p-6 border-t dark:border-gray-700 space-x-3">
+                <button id="modal-cancel-btn" class="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 font-semibold">
+                    Cancel
+                </button>
+                <button id="modal-save-btn" class="px-4 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================= -->
+    <!-- == MODAL TEMPLATES == -->
+    <!-- ======================================= -->
+    <template id="modal-template-add-customer">
+        <form class="space-y-4">
+            <div>
+                <label for="customer-name" class="block text-sm font-medium mb-1">Full Name</label>
+                <input type="text" id="customer-name" placeholder="John Doe" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+            </div>
+            <div>
+                <label for="customer-email" class="block text-sm font-medium mb-1">Email Address</label>
+                <input type="email" id="customer-email" placeholder="john@example.com" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+            </div>
+            <div>
+                <label for="customer-phone" class="block text-sm font-medium mb-1">Phone Number</label>
+                <input type="tel" id="customer-phone" placeholder="(123) 456-7890" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+            </div>
+            <div>
+                <label for="customer-address" class="block text-sm font-medium mb-1">Address</label>
+                <textarea id="customer-address" rows="3" placeholder="123 Main St, Anytown, USA" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none"></textarea>
+            </div>
+        </form>
+    </template>
+
+    <template id="modal-template-add-plan">
+        <form class="space-y-4">
+            <div>
+                <label for="plan-name" class="block text-sm font-medium mb-1">Plan Name</label>
+                <input type="text" id="plan-name" placeholder="e.g., Premium" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="plan-price" class="block text-sm font-medium mb-1">Price</label>
+                    <input type="number" id="plan-price" placeholder="49.99" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label for="plan-interval" class="block text-sm font-medium mb-1">Interval</label>
+                    <select id="plan-interval" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <label for="plan-features" class="block text-sm font-medium mb-1">Features (one per line)</label>
+                <textarea id="plan-features" rows="4" placeholder="Feature 1&#10;Feature 2&#10;Feature 3" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none"></textarea>
+            </div>
+        </form>
+    </template>
+
+    <template id="modal-template-add-coupon">
+        <form class="space-y-4">
+            <div>
+                <label for="coupon-code" class="block text-sm font-medium mb-1">Coupon Code</label>
+                <input type="text" id="coupon-code" placeholder="SAVE20" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="coupon-type" class="block text-sm font-medium mb-1">Discount Type</label>
+                    <select id="coupon-type" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+                        <option value="percent">Percentage (%)</option>
+                        <option value="fixed">Fixed Amount ($)</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="coupon-value" class="block text-sm font-medium mb-1">Value</label>
+                    <input type="number" id="coupon-value" placeholder="20" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="coupon-limit" class="block text-sm font-medium mb-1">Usage Limit</label>
+                    <input type="number" id="coupon-limit" placeholder="100" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label for="coupon-expiry" class="block text-sm font-medium mb-1">Expiry Date</label>
+                    <input type="date" id="coupon-expiry" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+                </div>
+            </div>
+        </form>
+    </template>
+
+    <template id="modal-template-add-product">
+        <form class="space-y-4">
+            <div>
+                <label for="product-name" class="block text-sm font-medium mb-1">Product Name</label>
+                <input type="text" id="product-name" placeholder="e.g., Espresso" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="product-price" class="block text-sm font-medium mb-1">Price</label>
+                    <input type="number" id="product-price" placeholder="3.50" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label for="product-stock" class="block text-sm font-medium mb-1">Stock Quantity</label>
+                    <input type="number" id="product-stock" placeholder="100" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+                </div>
+            </div>
+            <div>
+                <label for="product-category" class="block text-sm font-medium mb-1">Category</label>
+                <select id="product-category" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+                    <option>Coffee</option>
+                    <option>Tea</option>
+                    <option>Pastries</option>
+                    <option>Merchandise</option>
+                </select>
+            </div>
+            <div>
+                <label for="product-desc" class="block text-sm font-medium mb-1">Description</label>
+                <textarea id="product-desc" rows="3" placeholder="A brief description of the product..." class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none"></textarea>
+            </div>
+        </form>
+    </template>
+
+
+    <!-- ======================================= -->
+    <!-- == JAVASCRIPT == -->
+    <!-- ======================================= -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Elements ---
+            const sidebar = document.getElementById('sidebar');
+            const sidebarOverlay = document.getElementById('sidebar-overlay');
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pageContents = document.querySelectorAll('.page-content');
+            const breadcrumbs = document.getElementById('breadcrumbs');
+            
+            // Dropdowns
+            const notificationBtn = document.getElementById('notification-btn');
+            const notificationDropdown = document.getElementById('notification-dropdown');
+            const userBtn = document.getElementById('user-btn');
+            const userDropdown = document.getElementById('user-dropdown');
+            
+            // Dark Mode
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            const htmlElement = document.documentElement;
+
+            // Modals
+            const modalContainer = document.getElementById('modal-container');
+            const modalBox = document.getElementById('modal-box');
+            const modalOverlay = document.getElementById('modal-overlay');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
+            const modalCancelBtn = document.getElementById('modal-cancel-btn');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            const modalTriggers = document.querySelectorAll('.modal-trigger');
+
+            // --- State ---
+            let isSidebarOpen = false;
+            let activeDropdown = null;
+
+            // --- Sidebar ---
+            const toggleSidebar = () => {
+                isSidebarOpen = !isSidebarOpen;
+                if (isSidebarOpen) {
+                    sidebar.classList.remove('-translate-x-full');
+                    sidebarOverlay.classList.remove('hidden');
+                } else {
+                    sidebar.classList.add('-translate-x-full');
+                    sidebarOverlay.classList.add('hidden');
+                }
+            };
+            
+            hamburgerBtn.addEventListener('click', toggleSidebar);
+            sidebarOverlay.addEventListener('click', toggleSidebar);
+
+            // --- Page Navigation ---
+            const navigateTo = (pageId, pageName) => {
+                // Hide all pages
+                pageContents.forEach(page => page.classList.add('hidden'));
+                
+                // Show target page
+                const targetPage = document.getElementById(`page-${pageId}`);
+                if (targetPage) {
+                    targetPage.classList.remove('hidden');
+                }
+                
+                // Update active nav link
+                navLinks.forEach(link => {
+                    link.classList.remove('bg-blue-600', 'text-white', 'dark:bg-blue-700', 'font-semibold');
+                    link.classList.add('text-gray-600', 'dark:text-gray-300', 'hover:bg-gray-100', 'dark:hover:bg-gray-800');
+                    if (link.dataset.page === pageId) {
+                        link.classList.add('bg-blue-600', 'text-white', 'dark:bg-blue-700', 'font-semibold');
+                        link.classList.remove('text-gray-600', 'dark:text-gray-300', 'hover:bg-gray-100', 'dark:hover:bg-gray-800');
+                    }
+                });
+                
+                // Update breadcrumbs
+                breadcrumbs.textContent = `Home / ${pageName}`;
+                
+                // Close sidebar on mobile after navigation
+                if (window.innerWidth < 1024 && isSidebarOpen) {
+                    toggleSidebar();
+                }
+            };
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = link.dataset.page;
+                    const pageName = link.querySelector('span').textContent;
+                    navigateTo(pageId, pageName);
+                });
+            });
+            
+            // Set initial page (Dashboard)
+            navigateTo('dashboard', 'Dashboard');
+
+            // --- Dropdowns ---
+            const toggleDropdown = (dropdown, btn) => {
+                if (activeDropdown && activeDropdown !== dropdown) {
+                    activeDropdown.classList.add('hidden');
+                }
+                
+                dropdown.classList.toggle('hidden');
+                
+                if (!dropdown.classList.contains('hidden')) {
+                    activeDropdown = dropdown;
+                } else {
+                    activeDropdown = null;
+                }
+            };
+
+            notificationBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleDropdown(notificationDropdown, notificationBtn);
+            });
+
+            userBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleDropdown(userDropdown, userBtn);
+            });
+            
+            // Close dropdowns on window click
+            window.addEventListener('click', () => {
+                if (activeDropdown) {
+                    activeDropdown.classList.add('hidden');
+                    activeDropdown = null;
+                }
+            });
+
+            // --- Dark Mode ---
+            const setDarkMode = (isDark) => {
+                if (isDark) {
+                    htmlElement.classList.add('dark');
+                    darkModeToggle.checked = true;
+                } else {
+                    htmlElement.classList.remove('dark');
+                    darkModeToggle.checked = false;
+                }
+            };
+
+            darkModeToggle.addEventListener('change', () => {
+                const isDark = darkModeToggle.checked;
+                setDarkMode(isDark);
+                localStorage.setItem('darkMode', isDark);
+            });
+            
+            // Load dark mode preference
+            const loadDarkMode = () => {
+                const preference = localStorage.getItem('darkMode');
+                if (preference !== null) {
+                    setDarkMode(preference === 'true');
+                } else {
+                    // Check system preference
+                    setDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
+                }
+            };
+            
+            loadDarkMode();
+
+            // --- Modals ---
+            const openModal = (templateId, title) => {
+                const template = document.getElementById(`modal-template-${templateId}`);
+                if (!template) {
+                    console.error('Modal template not found:', templateId);
+                    return;
+                }
+                
+                const content = template.content.cloneNode(true);
+                modalBody.innerHTML = ''; // Clear previous content
+                modalBody.appendChild(content);
+                modalTitle.textContent = title;
+                
+                modalContainer.classList.remove('hidden');
+                // Trigger transition
+                setTimeout(() => {
+                    modalBox.classList.remove('scale-95', 'opacity-0');
+                    modalBox.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            };
+
+            const closeModal = () => {
+                modalBox.classList.add('scale-95', 'opacity-0');
+                modalBox.classList.remove('scale-100', 'opacity-100');
+                setTimeout(() => {
+                    modalContainer.classList.add('hidden');
+                }, 200); // Wait for transition
+            };
+
+            modalTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const target = trigger.dataset.modalTarget;
+                    let title = 'Add New';
+                    if (target === 'add-customer') title = 'Add New Customer';
+                    if (target === 'add-plan') title = 'Add New Plan';
+                    if (target === 'add-coupon') title = 'Create New Coupon';
+                    if (target === 'add-product') title = 'Add New Product';
+                    openModal(target, title);
+                });
+            });
+
+            modalCloseBtn.addEventListener('click', closeModal);
+            modalCancelBtn.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', closeModal);
+            
+            // --- Initialize Lucide Icons ---
+            lucide.createIcons();
+
+        });
+    </script>
+
+</body>
 </html>
+

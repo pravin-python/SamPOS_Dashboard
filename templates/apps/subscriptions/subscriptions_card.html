@@ -1,157 +1,180 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
-{% block title %} Subscriptions {% endblock title %}
-{% block breadcrumbs %}
-<!-- [ breadcrumb ] start -->
-<div class="page-header">
-  <div class="page-block">
-    <div class="page-header-title">
-      <h5 class="mb-5 font-medium">Subscriptions</h5>
-    </div>
-    <ul class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{% url 'core:index'%}">Home</a></li>
-      <li class="breadcrumb-item" aria-current="page">Subscriptions</li>
-    </ul>
-  </div>
-</div>
-<!-- [ breadcrumb ] end -->
-{% endblock breadcrumbs %}
+{% block title %}
+  Subscriptions
+{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
-    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addSubscriptionModal">
-        + Add New Plan
-    </button>
-</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css" integrity="sha512-t7Few9xlddEmgd3oKZQahkNI4dS6l80+eGEzFQiqtyVYdvcSG2D3Iub77R20BdotfRPA9caaRkg1tyaJiPmO0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- ======================================= -->
+  <!-- == SUBSCRIPTIONS PAGE == -->
+  <!-- ======================================= -->
+  <div class="page-content">
+    <!-- Page Header -->
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-semibold">Subscription Plans</h2>
+      <button data-modal-target="add-plan" class="modal-trigger flex items-center px-4 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700"><i data-lucide="plus" class="w-5 h-5 mr-2"></i> Add New Plan</button>
+    </div>
 
-<!-- [ Main Content ] start -->
-<div class="grid grid-cols-12 gap-x-6">
-          <div class="col-span-12 xl:col-span-4 md:col-span-6">
-            <div class="card">
-                    <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h6 class="fw-semibold mb-0">Standard Plan</h6>
-                    <span class="text-primary fw-semibold">$15 / Month</span>
-                    </div>
-
-                    <ul class="list-unstyled small text-muted mb-4">
-                    <li>• All Basic features</li>
-                    <li>• Bluetooth Scanner support</li>
-                    <li>• Priority Sync (faster processing)</li>
-                    <li>• Coupons & Discounts</li>
-                    </ul>
-
-                    <div class="d-flex justify-content-between">
-                    <div class="d-flex gap-2">
-                        <button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i></button>
-                        <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
-                    </div>
-                    <button class="btn btn-primary btn-sm">Deactivate Plan</button>
-                    </div>
-                </div>
-            </div>
-          </div>
-          <div class="col-span-12 xl:col-span-4 md:col-span-6">
-            <div class="card">
-              <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h6 class="fw-semibold mb-0">Standard Plan</h6>
-                    <span class="text-primary fw-semibold">$15 / Month</span>
-                    </div>
-
-                    <ul class="list-unstyled small text-muted mb-4">
-                    <li>• All Basic features</li>
-                    <li>• Bluetooth Scanner support</li>
-                    <li>• Priority Sync (faster processing)</li>
-                    <li>• Coupons & Discounts</li>
-                    </ul>
-
-                    <div class="d-flex justify-content-between">
-                    <div class="d-flex gap-2">
-                        <button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i></button>
-                        <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
-                    </div>
-                    <button class="btn btn-primary btn-sm">Deactivate Plan</button>
-                    </div>
-                </div>
-            </div>
-          </div>
-          <div class="col-span-12 xl:col-span-4">
-            <div class="card">
-              <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h6 class="fw-semibold mb-0">Standard Plan</h6>
-                    <span class="text-primary fw-semibold">$15 / Month</span>
-                    </div>
-
-                    <ul class="list-unstyled small text-muted mb-4">
-                    <li>• All Basic features</li>
-                    <li>• Bluetooth Scanner support</li>
-                    <li>• Priority Sync (faster processing)</li>
-                    <li>• Coupons & Discounts</li>
-                    </ul>
-
-                    <div class="d-flex justify-content-between">
-                    <div class="d-flex gap-2">
-                        <button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i></button>
-                        <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
-                    </div>
-                    <button class="btn btn-primary btn-sm">Deactivate Plan</button>
-                    </div>
-                </div>
-            </div>
-          </div>
+    <!-- Plans Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Plan 1: Basic -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 flex flex-col items-center text-center">
+        <h3 class="text-lg font-semibold text-gray-500 dark:text-gray-400 uppercase">Basic</h3>
+        <div class="my-4">
+          <span class="text-5xl font-bold">$19</span>
+          <span class="text-gray-500 dark:text-gray-400">/mo</span>
         </div>
+        <p class="text-gray-600 dark:text-gray-300 mb-6">Ideal for small cafes and new businesses.</p>
+        <ul class="space-y-3 mb-8 w-full">
+          <li class="flex items-center">
+            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> 1 Register
+          </li>
+          <li class="flex items-center">
+            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> Basic Inventory
+          </li>
+          <li class="flex items-center">
+            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> Email Support
+          </li>
+          <li class="flex items-center text-gray-400 dark:text-gray-500">
+            <i data-lucide="x-circle" class="w-5 h-5 mr-2"></i> Advanced Reporting
+          </li>
+        </ul>
+        <div class="flex justify-between items-center w-full">
+          <!-- Left buttons -->
+          <div class="flex gap-2">
+              <!-- Outline Danger Button -->
+              <button class="border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1 rounded text-sm">
+                  <i class="bi bi-trash"></i>
+              </button>
 
- <!-- Add New Subscription Modal -->
-<div class="modal fade" id="addSubscriptionModal" tabindex="-1" aria-labelledby="addSubscriptionModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content border-0 shadow-lg">
-      <div class="modal-header border-0">
-        <h5 class="modal-title fw-semibold" id="addSubscriptionModalLabel">Add New Subscription</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <!-- Primary Button -->
+              <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                  <i class="bi bi-pencil-square"></i>
+              </button>
+          </div>
+
+          <!-- Right primary button -->
+          <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+              Deactivate Plan
+          </button>
+        </div>
       </div>
 
-      <div class="modal-body">
-        <form id="addSubscriptionForm">
-          <!-- Subscription Plan Name -->
-          <div class="mb-3">
-            <label class="form-label text-muted small">Subscription Plan Name</label>
-            <input type="text" class="form-control" id="subscriptionName" placeholder="Premium Plan" required />
+      <!-- Plan 2: Pro (Featured) -->
+      <div class="bg-blue-600 dark:bg-blue-700 text-white rounded-xl shadow-2xl p-8 flex flex-col items-center text-center relative overflow-hidden">
+        <span class="absolute top-0 right-0 px-4 py-1 bg-yellow-400 text-gray-900 font-semibold text-sm rounded-bl-lg">Popular</span>
+        <h3 class="text-lg font-semibold uppercase">Pro</h3>
+        <div class="my-4">
+          <span class="text-5xl font-bold">$49</span>
+          <span>/mo</span>
+        </div>
+        <p class="mb-6">For growing businesses that need more power.</p>
+        <ul class="space-y-3 mb-8 w-full">
+          <li class="flex items-center">
+            <i data-lucide="check-circle" class="w-5 h-5 text-green-300 mr-2"></i> 3 Registers
+          </li>
+          <li class="flex items-center">
+            <i data-lucide="check-circle" class="w-5 h-5 text-green-300 mr-2"></i> Full Inventory Control
+          </li>
+          <li class="flex items-center">
+            <i data-lucide="check-circle" class="w-5 h-5 text-green-300 mr-2"></i> Priority Support
+          </li>
+          <li class="flex items-center">
+            <i data-lucide="check-circle" class="w-5 h-5 text-green-300 mr-2"></i> Advanced Reporting
+          </li>
+        </ul>
+        <div class="flex justify-between items-center w-full">
+          <!-- Left buttons -->
+          <div class="flex gap-2">
+              <!-- Outline Danger Button -->
+              <button class="border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1 rounded text-sm">
+                  <i class="bi bi-trash"></i>
+              </button>
+
+              <!-- Primary Button -->
+              <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                  <i class="bi bi-pencil-square"></i>
+              </button>
           </div>
 
-          <!-- Features -->
-          <div class="mb-3">
-            <label class="form-label text-muted small">Features</label>
-            <textarea class="form-control" id="subscriptionFeatures" rows="3" placeholder="Add Features"></textarea>
+          <!-- Right primary button -->
+          <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+              Deactivate Plan
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Plan 3: Enterprise -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 flex flex-col items-center text-center">
+        <h3 class="text-lg font-semibold text-gray-500 dark:text-gray-400 uppercase">Enterprise</h3>
+        <div class="my-4">
+          <span class="text-5xl font-bold">$99</span>
+          <span class="text-gray-500 dark:text-gray-400">/mo</span>
+        </div>
+        <p class="text-gray-600 dark:text-gray-300 mb-6">For large operations and multi-location shops.</p>
+        <ul class="space-y-3 mb-8 w-full">
+          <li class="flex items-center">
+            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> Unlimited Registers
+          </li>
+          <li class="flex items-center">
+            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> Multi-Location Support
+          </li>
+          <li class="flex items-center">
+            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> 24/7 Phone Support
+          </li>
+          <li class="flex items-center">
+            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> API Access
+          </li>
+        </ul>
+        <div class="flex justify-between items-center w-full">
+          <!-- Left buttons -->
+          <div class="flex gap-2">
+              <!-- Outline Danger Button -->
+              <button class="border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1 rounded text-sm">
+                  <i class="bi bi-trash"></i>
+              </button>
+
+              <!-- Primary Button -->
+              <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+                  <i class="bi bi-pencil-square"></i>
+              </button>
           </div>
 
-          <!-- Price and Duration -->
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label class="form-label text-muted small">Price</label>
-              <input type="text" class="form-control" id="subscriptionPrice" placeholder="$30" required />
-            </div>
-            <div class="col-md-6 mb-3">
-              <label class="form-label text-muted small">Duration</label>
-              <select class="form-select" id="subscriptionDuration" required>
-                <option value="Monthly">Monthly</option>
-                <option value="Quarterly">Quarterly</option>
-                <option value="Yearly">Yearly</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Add Button -->
-          <div class="d-grid mt-3">
-            <button type="submit" class="btn btn-primary btn-block">Add</button>
-          </div>
-        </form>
+          <!-- Right primary button -->
+          <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+              Deactivate Plan
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-
-<!-- [ Main Content ] end -->
-{% endblock content %}
+  <template id="modal-template-add-plan">
+    <form class="space-y-4" id="add-new-plan-form">
+      {% csrf_token  %}
+        <div>
+            <label for="plan-name" class="block text-sm font-medium mb-1">Plan Name</label>
+            <input type="text" name="name" id="plan-name" placeholder="e.g., Premium" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <label for="plan-price" class="block text-sm font-medium mb-1">Price</label>
+                <input type="number" name="amount" id="plan-price" placeholder="49.99" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+            </div>
+            <div>
+                <label for="plan-interval" class="block text-sm font-medium mb-1">Interval</label>
+                <select id="plan-interval" name="duration" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none">
+                  {% for value, label in duration_choices %}
+                    <option value="{{ value }}">{{ label }}</option>
+                  {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div>
+            <label for="plan-features" class="block text-sm font-medium mb-1">Features (one per line)</label>
+            <textarea id="plan-features" name="features" rows="4" placeholder="Feature 1&#10;Feature 2&#10;Feature 3" class="w-full p-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-blue-500 focus:ring-blue-500 focus:outline-none"></textarea>
+        </div>
+    </form>
+  </template>
+{% endblock %}

@@ -1,16 +1,11 @@
-{% load static %}
-<!-- [ Sidebar Menu ] start -->
-<nav class="pc-sidebar">
-  <div class="navbar-wrapper">
-    <div class="m-header flex items-center py-4 px-6 h-header-height">
-      <a href="{% url 'core:index' %}" class="b-brand flex items-center gap-3">
-        <!-- ========   Change your logo from here   ============ -->
-        <img src="{% static 'assets/images/logo-white.svg' %}" class="img-fluid logo logo-lg" alt="logo" />
-      </a>
-    </div>
-    <div class="navbar-content h-[calc(100vh_-_74px)] py-2.5">
-      {% include 'include/menu-list.html' %}
+<aside id="sidebar" class="fixed top-0 left-0 h-screen w-64 bg-white dark:bg-gray-900 shadow-lg z-40 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+  <!-- Logo -->
+  <div class="flex items-center justify-center h-16 border-b border-gray-200 dark:border-gray-800">
+    <div class="flex items-center space-x-2">
+      <span class="p-2 bg-blue-600 rounded-lg"><i data-lucide="layout-grid" class="w-6 h-6 text-white"></i></span>
+      <h1 class="text-2xl font-bold text-blue-600 dark:text-blue-500">POS Master</h1>
     </div>
   </div>
-</nav>
-<!-- [ Sidebar Menu ] end -->
+  {% include 'include/menu-list.html' %}
+
+</aside>

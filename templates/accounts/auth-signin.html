@@ -1,48 +1,33 @@
 {% extends 'layouts/auth_base.html' %}
-{% load static %}
-{% block title %} Login {% endblock title %}
-
+{% block title %} Auth Login {% endblock %}
+<!-- Login Form -->
 {% block content %}
-<div class="card-body !p-10">
-    <div class="text-center mb-8">
-        <a href="#"><img src="{% static 'assets/images/logo-dark.svg' %}" alt="img" class="mx-auto auth-logo"/></a>
-    </div>
-    <h4 class="text-center font-medium mb-4">Login</h4>
-    <form method="post">
-        {% csrf_token %}
-
-        {% if form.non_field_errors %}
+<form id="login-form" method="post" class="space-y-5">
+    {% if form.non_field_errors %}
+        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded">
             {% for error in form.non_field_errors %}
-                <div class="alert alert-danger py-1 small">{{ error }}</div>
+                    <p class="font-medium">Invalid login credentials</p>
             {% endfor %}
-        {% endif %}
-
-        {% for field in form %}
-            <div class="input-group mb-3">
-                <span class="input-group-text">
-                    <i class="feather {% if field.name == 'username' %}icon-user{% else %}icon-lock{% endif %}"></i>
-                </span>
-                {{ field }}
-            </div>
-            {% if field.errors %}
-                <div class="text-danger small mb-2">{{ field.errors }}</div>
-            {% endif %}
-        {% endfor %}
-
-        <div class="flex mt-1 justify-between items-center flex-wrap">
-            <div class="form-check">
-            <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="" />
-            <label class="form-check-label text-muted" for="customCheckc1">Remember me?</label>
-            </div>
-            <h6 class="font-normal text-primary-500 mb-0">
-            <a href="#"> Forgot Password? </a>
-            </h6>
         </div>
-
-        <div class="mt-4 text-center">
-            <button type="submit" class="btn btn-primary mx-auto shadow-2xl">Login</button>
+    {% endif %}
+    {% csrf_token %}
+    <div>
+        <label for="loginEmail" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email Address</label>
+        <input type="text" id="loginEmail" name="username" class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-gray-700 dark:text-white" placeholder="your-id@example.com" required />
+        <span class="text-sm text-red-600 font-medium">{{ form.errors.username }}</span>
+    </div>
+    <div>
+        <label for="loginPassword" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+        <input type="password" placeholder="*****" name="password" id="loginPassword" class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-gray-700 dark:text-white" required />
+        <span class="text-sm text-red-600 font-medium">{{ form.errors.password }}</span>
+    </div>
+    <!-- <div class="flex items-center justify-between text-sm">
+        <div class="flex items-center">
+            <input id="remember-me" type="checkbox" class="h-4 w-4 text-teal-600 border-gray-300 rounded focus:ring-teal-500 dark:bg-gray-600 dark:border-gray-500" />
+            <label for="remember-me" class="ml-2 text-gray-600 dark:text-gray-300">Remember me</label>
         </div>
-        
-    </form>
-</div>
-{% endblock content %}
+    </div> -->
+    <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-sm font-semibold text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all transform hover:scale-[1.01]">Sign In</button>
+</form>
+
+{% endblock %}

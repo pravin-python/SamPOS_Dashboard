@@ -1,368 +1,183 @@
 {% extends 'layouts/base.html' %}
-{% load static %}
-{% block title %} Dashboard {% endblock title %}
-{% block breadcrumb_title%}Default{% endblock%}
+{% block title %}
+  DashBoard
+{% endblock %}
 
 {% block content %}
-<!-- [ Main Content ] start -->
-  <div class="grid grid-cols-12 gap-x-6">
-    <div class="col-span-12 xl:col-span-4 md:col-span-6">
-      <div class="card">
-        <div class="card-header !pb-0 !border-b-0">
-          <h5>Daily Sales</h5>
-        </div>
-        <div class="card-body">
-          <div class="flex items-center justify-between gap-3 flex-wrap">
-            <h3 class="font-light flex items-center mb-0">
-              <i class="feather icon-arrow-up text-success-500 text-[30px] mr-1.5"></i>
-              $ 249.95
-            </h3>
-            <p class="mb-0">67%</p>
+  <!-- ======================================= -->
+  <!-- == DASHBOARD PAGE (Default) == -->
+  <!-- ======================================= -->
+  <div id="page-dashboard" class="page-content">
+    <!-- Stats Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+      <!-- Card 1: Daily Sales -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+        <div class="flex justify-between items-start mb-4">
+          <div class="flex flex-col">
+            <span class="text-gray-500 dark:text-gray-400 text-sm">Daily Sales</span>
+            <span class="text-3xl font-bold">$1,450.80</span>
           </div>
-          <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mt-6 dark:bg-themedark-bodybg">
-            <div class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar"
-              style="width: 75%"></div>
+          <div class="p-3 bg-blue-100 dark:bg-blue-900 rounded-lg">
+            <i data-lucide="dollar-sign" class="w-6 h-6 text-blue-500"></i>
           </div>
         </div>
+        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+          <div class="bg-blue-500 h-2 rounded-full" style="width: 75%"></div>
+        </div>
+        <span class="text-xs text-gray-500 dark:text-gray-400 mt-2 block">+15% from yesterday</span>
       </div>
-    </div>
-    <div class="col-span-12 xl:col-span-4 md:col-span-6">
-      <div class="card">
-        <div class="card-header !pb-0 !border-b-0">
-          <h5>Monthly Sales</h5>
-        </div>
-        <div class="card-body">
-          <div class="flex items-center justify-between gap-3 flex-wrap">
-            <h3 class="font-light flex items-center mb-0">
-              <i class="feather icon-arrow-down text-danger-500 text-[30px] mr-1.5"></i>
-              $ 2.942.32
-            </h3>
-            <p class="mb-0">36%</p>
-          </div>
-          <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mt-6 dark:bg-themedark-bodybg">
-            <div class="bg-theme-bg-2 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar"
-              style="width: 35%"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-span-12 xl:col-span-4">
-      <div class="card">
-        <div class="card-header !pb-0 !border-b-0">
-          <h5>Yearly Sales</h5>
-        </div>
-        <div class="card-body">
-          <div class="flex items-center justify-between gap-3 flex-wrap">
-            <h3 class="font-light flex items-center mb-0">
-              <i class="feather icon-arrow-up text-success-500 text-[30px] mr-1.5"></i>
-              $8.638.32
-            </h3>
-            <p class="mb-0">80%</p>
-          </div>
-          <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mt-6 dark:bg-themedark-bodybg">
-            <div class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar"
-              style="width: 80%"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-span-12 xl:col-span-4">
-      <div class="card card-social">
-        <div class="card-body border-b border-theme-border dark:border-themedark-border">
-          <div class="flex items-center justify-center">
-            <div class="shrink-0">
-              <i class="fab fa-facebook-f text-primary-500 text-[36px]"></i>
-            </div>
-            <div class="grow ltr:text-right rtl:text-left">
-              <h3 class="mb-2">12,281</h3>
-              <h5 class="text-success-500 mb-0">+7.2% <span class="text-muted">Total Likes</span></h5>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="grid grid-cols-12 gap-x-6">
-            <div class="col-span-6">
-              <h6 class="text-center mb-2.5"><span class="text-muted m-r-5">Target:</span>35,098</h6>
-              <div class="w-full bg-theme-bodybg rounded-lg h-1.5 dark:bg-themedark-bodybg">
-                <div class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar" style="width: 60%"></div>
-              </div>
-            </div>
-            <div class="col-span-6">
-              <h6 class="text-center mb-2.5"><span class="text-muted m-r-5">Duration:</span>350</h6>
-              <div class="w-full bg-theme-bodybg rounded-lg h-1.5 dark:bg-themedark-bodybg">
-                <div class="bg-theme-bg-2 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar" style="width: 45%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-span-12 xl:col-span-4 md:col-span-6">
-      <div class="card card-social">
-        <div class="card-body border-b border-theme-border dark:border-themedark-border">
-          <div class="flex items-center justify-center">
-            <div class="shrink-0">
-              <i class="fab fa-twitter text-primary-500 text-[36px]"></i>
-            </div>
-            <div class="grow ltr:text-right rtl:text-left">
-              <h3 class="mb-2">11,200</h3>
-              <h5 class="text-purple-500 mb-0">+6.2% <span class="text-muted">Total Likes</span></h5>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="grid grid-cols-12 gap-x-6">
-            <div class="col-span-6">
-              <h6 class="text-center mb-2.5"><span class="text-muted m-r-5">Target:</span>34,185</h6>
-              <div class="w-full bg-theme-bodybg rounded-lg h-1.5 dark:bg-themedark-bodybg">
-                <div class="bg-success-500 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar" style="width: 40%"></div>
-              </div>
-            </div>
-            <div class="col-span-6">
-              <h6 class="text-center mb-2.5"><span class="text-muted m-r-5">Duration:</span>800</h6>
-              <div class="w-full bg-theme-bodybg rounded-lg h-1.5 dark:bg-themedark-bodybg">
-                <div class="bg-primary-500 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar" style="width: 70%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-span-12 xl:col-span-4 md:col-span-6">
-      <div class="card card-social">
-        <div class="card-body border-b border-theme-border dark:border-themedark-border">
-          <div class="flex items-center justify-center">
-            <div class="shrink-0">
-              <i class="fab fa-google-plus-g text-danger-500 text-[36px]"></i>
-            </div>
-            <div class="grow ltr:text-right rtl:text-left">
-              <h3 class="mb-2">10,500</h3>
-              <h5 class="text-purple-500 mb-0">+5.9% <span class="text-muted">Total Likes</span></h5>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="grid grid-cols-12 gap-x-6">
-            <div class="col-span-6">
-              <h6 class="text-center mb-2.5"><span class="text-muted m-r-5">Target:</span>25,998</h6>
-              <div class="w-full bg-theme-bodybg rounded-lg h-1.5 dark:bg-themedark-bodybg">
-                <div class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar" style="width: 80%"></div>
-              </div>
-            </div>
-            <div class="col-span-6">
-              <h6 class="text-center mb-2.5"><span class="text-muted m-r-5">Duration:</span>900</h6>
-              <div class="w-full bg-theme-bodybg rounded-lg h-1.5 dark:bg-themedark-bodybg">
-                <div class="bg-theme-bg-2 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]" role="progressbar" style="width: 50%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-span-12 xl:col-span-4 md:col-span-6">
-      <div class="card user-list">
-        <div class="card-header">
-          <h5>Rating</h5>
-        </div>
-        <div class="card-body">
-          <div class="flex items-center justify-between gap-1 mb-5">
-            <h2 class="font-light flex items-center m-0">
-              4.7
-              <i class="fas fa-star text-[10px] ml-2.5 text-warning-500"></i>
-            </h2>
-            <h6 class="flex items-center m-0">
-              0.4
-              <i class="fas fa-caret-up text-success text-[22px] ml-2.5"></i>
-            </h6>
-          </div>
 
-          <div class="flex items-center justify-between gap-2 mb-2">
-            <h6 class="flex items-center gap-1">
-              <i class="fas fa-star text-[10px] mr-2.5 text-warning-500"></i>
-              5
-            </h6>
-            <h6>384</h6>
+      <!-- Card 2: Monthly Sales -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+        <div class="flex justify-between items-start mb-4">
+          <div class="flex flex-col">
+            <span class="text-gray-500 dark:text-gray-400 text-sm">Monthly Sales</span>
+            <span class="text-3xl font-bold">$32,800.00</span>
           </div>
-          <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mb-6 mt-3 dark:bg-themedark-bodybg">
-            <div
-              class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]"
-              role="progressbar"
-              style="width: 70%"
-            ></div>
-          </div>
-
-          <div class="flex items-center justify-between gap-2 mb-2">
-            <h6 class="flex items-center gap-1">
-              <i class="fas fa-star text-[10px] mr-2.5 text-warning-500"></i>
-              4
-            </h6>
-            <h6>145</h6>
-          </div>
-          <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mb-6 mt-3 dark:bg-themedark-bodybg">
-            <div
-              class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]"
-              role="progressbar"
-              style="width: 35%"
-            ></div>
-          </div>
-
-          <div class="flex items-center justify-between gap-2 mb-2">
-            <h6 class="flex items-center gap-1">
-              <i class="fas fa-star text-[10px] mr-2.5 text-warning-500"></i>
-              3
-            </h6>
-            <h6>24</h6>
-          </div>
-          <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mb-6 mt-3 dark:bg-themedark-bodybg">
-            <div
-              class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]"
-              role="progressbar"
-              style="width: 25%"
-            ></div>
-          </div>
-
-          <div class="flex items-center justify-between gap-2 mb-2">
-            <h6 class="flex items-center gap-1">
-              <i class="fas fa-star text-[10px] mr-2.5 text-warning-500"></i>
-              2
-            </h6>
-            <h6>1</h6>
-          </div>
-          <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mb-6 mt-3 dark:bg-themedark-bodybg">
-            <div
-              class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]"
-              role="progressbar"
-              style="width: 10%"
-            ></div>
-          </div>
-
-          <div class="flex items-center justify-between gap-2 mb-2">
-            <h6 class="flex items-center gap-1">
-              <i class="fas fa-star text-[10px] mr-2.5 text-warning-500"></i>
-              1
-            </h6>
-            <h6>0</h6>
-          </div>
-          <div class="w-full bg-theme-bodybg rounded-lg h-1.5 mt-4 dark:bg-themedark-bodybg">
-            <div
-              class="bg-theme-bg-1 h-full rounded-lg shadow-[0_10px_20px_0_rgba(0,0,0,0.3)]"
-              role="progressbar"
-              style="width: 0%"
-            ></div>
+          <div class="p-3 bg-green-100 dark:bg-green-900 rounded-lg">
+            <i data-lucide="credit-card" class="w-6 h-6 text-green-500"></i>
           </div>
         </div>
+        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+          <div class="bg-green-500 h-2 rounded-full" style="width: 60%"></div>
+        </div>
+        <span class="text-xs text-gray-500 dark:text-gray-400 mt-2 block">+8% from last month</span>
+      </div>
+
+      <!-- Card 3: Total Orders -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+        <div class="flex justify-between items-start mb-4">
+          <div class="flex flex-col">
+            <span class="text-gray-500 dark:text-gray-400 text-sm">Total Orders</span>
+            <span class="text-3xl font-bold">8,920</span>
+          </div>
+          <div class="p-3 bg-yellow-100 dark:bg-yellow-900 rounded-lg">
+            <i data-lucide="shopping-bag" class="w-6 h-6 text-yellow-500"></i>
+          </div>
+        </div>
+        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+          <div class="bg-yellow-500 h-2 rounded-full" style="width: 45%"></div>
+        </div>
+        <span class="text-xs text-gray-500 dark:text-gray-400 mt-2 block">+120 this week</span>
+      </div>
+
+      <!-- Card 4: New Customers -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+        <div class="flex justify-between items-start mb-4">
+          <div class="flex flex-col">
+            <span class="text-gray-500 dark:text-gray-400 text-sm">New Customers</span>
+            <span class="text-3xl font-bold">215</span>
+          </div>
+          <div class="p-3 bg-indigo-100 dark:bg-indigo-900 rounded-lg">
+            <i data-lucide="user-plus" class="w-6 h-6 text-indigo-500"></i>
+          </div>
+        </div>
+        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+          <div class="bg-indigo-500 h-2 rounded-full" style="width: 80%"></div>
+        </div>
+        <span class="text-xs text-gray-500 dark:text-gray-400 mt-2 block">+30 this month</span>
       </div>
     </div>
-    <div class="col-span-12 xl:col-span-8 md:col-span-6">
-      <div class="card table-card">
-        <div class="card-header">
-          <h5>Recent Users</h5>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Left Column: Recent Orders -->
+      <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+        <h3 class="text-xl font-semibold mb-4">Recent Orders</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-max">
+            <thead>
+              <tr class="border-b dark:border-gray-700">
+                <th class="text-left p-4 text-sm font-semibold text-gray-500 dark:text-gray-400">Order ID</th>
+                <th class="text-left p-4 text-sm font-semibold text-gray-500 dark:text-gray-400">Customer</th>
+                <th class="text-left p-4 text-sm font-semibold text-gray-500 dark:text-gray-400">Status</th>
+                <th class="text-left p-4 text-sm font-semibold text-gray-500 dark:text-gray-400">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="p-4">#8921</td>
+                <td class="p-4">John Doe</td>
+                <td class="p-4">
+                  <span class="px-3 py-1 text-xs font-medium rounded-full bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">Completed</span>
+                </td>
+                <td class="p-4">$45.00</td>
+              </tr>
+              <tr>
+                <td class="p-4">#8922</td>
+                <td class="p-4">Jane Smith</td>
+                <td class="p-4">
+                  <span class="px-3 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300">Pending</span>
+                </td>
+                <td class="p-4">$22.50</td>
+              </tr>
+              <tr>
+                <td class="p-4">#8923</td>
+                <td class="p-4">Mike Johnson</td>
+                <td class="p-4">
+                  <span class="px-3 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300">Processing</span>
+                </td>
+                <td class="p-4">$105.00</td>
+              </tr>
+              <tr>
+                <td class="p-4">#8924</td>
+                <td class="p-4">Sarah Lee</td>
+                <td class="p-4">
+                  <span class="px-3 py-1 text-xs font-medium rounded-full bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300">Cancelled</span>
+                </td>
+                <td class="p-4">$15.75</td>
+              </tr>
+              <tr>
+                <td class="p-4">#8925</td>
+                <td class="p-4">David Chen</td>
+                <td class="p-4">
+                  <span class="px-3 py-1 text-xs font-medium rounded-full bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">Completed</span>
+                </td>
+                <td class="p-4">$88.20</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-hover">
-              <tbody>
-                <tr class="unread">
-                  <td>
-                    <img class="rounded-full max-w-10" style="width: 40px" src="{% static 'assets/images/user/avatar-1.jpg' %}" alt="activity-user" />
-                  </td>
-                  <td>
-                    <h6 class="mb-1">Isabella Christensen</h6>
-                    <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
-                  </td>
-                  <td>
-                    <h6 class="text-muted">
-                      <i class="fas fa-circle text-success text-[10px] ltr:mr-4 rtl:ml-4"></i>
-                      11 MAY 12:56
-                    </h6>
-                  </td>
-                  <td>
-                    <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
-                    <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
-                  </td>
-                </tr>
-                <tr class="unread">
-                  <td>
-                    <img class="rounded-full max-w-10" style="width: 40px" src="{% static 'assets/images/user/avatar-2.jpg' %}" alt="activity-user" />
-                  </td>
-                  <td>
-                    <h6 class="mb-1">Mathilde Andersen</h6>
-                    <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
-                  </td>
-                  <td>
-                    <h6 class="text-muted">
-                      <i class="fas fa-circle text-danger text-[10px] ltr:mr-4 rtl:ml-4"></i>
-                      11 MAY 10:35
-                    </h6>
-                  </td>
-                  <td>
-                    <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
-                    <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
-                  </td>
-                </tr>
-                <tr class="unread">
-                  <td>
-                    <img class="rounded-full max-w-10" style="width: 40px" src="{% static 'assets/images/user/avatar-3.jpg' %}" alt="activity-user" />
-                  </td>
-                  <td>
-                    <h6 class="mb-1">Karla Sorensen</h6>
-                    <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
-                  </td>
-                  <td>
-                    <h6 class="text-muted">
-                      <i class="fas fa-circle text-success text-[10px] ltr:mr-4 rtl:ml-4"></i>
-                      9 MAY 17:38
-                    </h6>
-                  </td>
-                  <td>
-                    <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
-                    <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
-                  </td>
-                </tr>
-                <tr class="unread">
-                  <td>
-                    <img class="rounded-full max-w-10" style="width: 40px" src="{% static 'assets/images/user/avatar-1.jpg' %}" alt="activity-user" />
-                  </td>
-                  <td>
-                    <h6 class="mb-1">Ida Jorgensen</h6>
-                    <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
-                  </td>
-                  <td>
-                    <h6 class="text-muted f-w-300">
-                      <i class="fas fa-circle text-danger text-[10px] ltr:mr-4 rtl:ml-4"></i>
-                      19 MAY 12:56
-                    </h6>
-                  </td>
-                  <td>
-                    <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
-                    <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
-                  </td>
-                </tr>
-                <tr class="unread">
-                  <td>
-                    <img class="rounded-full max-w-10" style="width: 40px" src="{% static 'assets/images/user/avatar-2.jpg' %}" alt="activity-user" />
-                  </td>
-                  <td>
-                    <h6 class="mb-1">Albert Andersen</h6>
-                    <p class="m-0">Lorem Ipsum is simply dummy text of…</p>
-                  </td>
-                  <td>
-                    <h6 class="text-muted">
-                      <i class="fas fa-circle text-success text-[10px] ltr:mr-4 rtl:ml-4"></i>
-                      21 July 12:56
-                    </h6>
-                  </td>
-                  <td>
-                    <a href="#!" class="badge bg-theme-bg-2 text-white text-[12px] mx-2">Reject</a>
-                    <a href="#!" class="badge bg-theme-bg-1 text-white text-[12px]">Approve</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+      </div>
+
+      <!-- Right Column: Top Selling Products -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+        <h3 class="text-xl font-semibold mb-4">Top Selling Products</h3>
+        <ul class="space-y-4">
+          <li class="flex items-center space-x-4">
+            <img src="https://placehold.co/64x64/E0F2FE/0EA5E9?text=Coffee" alt="Product" class="w-16 h-16 rounded-lg object-cover" />
+            <div>
+              <h4 class="font-semibold">Espresso</h4>
+              <span class="text-sm text-gray-500 dark:text-gray-400">120 units sold</span>
+            </div>
+            <span class="ml-auto font-semibold">$360.00</span>
+          </li>
+          <li class="flex items-center space-x-4">
+            <img src="https://placehold.co/64x64/FEF3C7/F59E0B?text=Pastry" alt="Product" class="w-16 h-16 rounded-lg object-cover" />
+            <div>
+              <h4 class="font-semibold">Croissant</h4>
+              <span class="text-sm text-gray-500 dark:text-gray-400">95 units sold</span>
+            </div>
+            <span class="ml-auto font-semibold">$285.00</span>
+          </li>
+          <li class="flex items-center space-x-4">
+            <img src="https://placehold.co/64x64/FCE7F3/EC4899?text=Cake" alt="Product" class="w-16 h-16 rounded-lg object-cover" />
+            <div>
+              <h4 class="font-semibold">Red Velvet Muffin</h4>
+              <span class="text-sm text-gray-500 dark:text-gray-400">80 units sold</span>
+            </div>
+            <span class="ml-auto font-semibold">$320.00</span>
+          </li>
+          <li class="flex items-center space-x-4">
+            <img src="https://placehold.co/64x64/DCFCE7/22C55E?text=Tea" alt="Product" class="w-16 h-16 rounded-lg object-cover" />
+            <div>
+              <h4 class="font-semibold">Matcha Latte</h4>
+              <span class="text-sm text-gray-500 dark:text-gray-400">72 units sold</span>
+            </div>
+            <span class="ml-auto font-semibold">$324.00</span>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
-<!-- [ Main Content ] end -->
-{% endblock content %}
+{% endblock %}

@@ -1,34 +1,38 @@
 {% extends 'layouts/auth_base.html' %}
-{% load static %}
-{% block title %} Login {% endblock title %}
-
+{% block title %} Auth Sign Up {% endblock %}
 {% block content %}
-<div class="card-body !p-10">
-    <div class="text-center mb-8">
-        <a href="#"><img src="{% static 'assets/images/logo-dark.svg' %}" alt="img" class="mx-auto auth-logo"/></a>
-    </div>
-    <h4 class="text-center font-medium mb-4">Login</h4>
-    <div class="mb-3">
-        <input type="email" class="form-control" id="floatingInput" placeholder="Email Address" />
-    </div>
-    <div class="mb-4">
-        <input type="password" class="form-control" id="floatingInput1" placeholder="Password" />
-    </div>
-    <div class="flex mt-1 justify-between items-center flex-wrap">
-        <div class="form-check">
-        <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="" />
-        <label class="form-check-label text-muted" for="customCheckc1">Remember me?</label>
+  <!-- Signup Form (Initially Hidden) -->
+<form id="signup-form" method="post" class="space-y-5">
+      {% if form.non_field_errors %}
+        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded">
+            {% for error in form.non_field_errors %}
+                    <p class="font-medium">Invalid login credentials</p>
+            {% endfor %}
         </div>
-        <h6 class="font-normal text-primary-500 mb-0">
-        <a href="#"> Forgot Password? </a>
-        </h6>
+    {% endif %}
+  {% csrf_token %}
+    <div>
+      <label for="signupName" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Full Name</label>
+      <input type="text" id="signupName" name="username" class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-gray-700 dark:text-white" placeholder="Your Name" required />
+      <span class="text-sm text-red-600 font-medium">{{ form.errors.username }}</span>
     </div>
-    <div class="mt-4 text-center">
-        <button type="button" class="btn btn-primary mx-auto shadow-2xl">Login</button>
+    <div>
+      <label for="signupEmail" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email Address</label>
+      <input type="email" id="signupEmail" name="eamil" class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-gray-700 dark:text-white" placeholder="jane@example.com" required />
+      <span class="text-sm text-red-600 font-medium">{{ form.errors.eamil }}</span>
     </div>
-    <div class="flex justify-between items-end flex-wrap mt-4">
-        <h6 class="font-medium mb-0">Don't have an Account?</h6>
-        <a href="register-v1.html" class="text-primary-500">Create Account</a>
+    <div>
+      <label for="signupPassword" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+      <input type="password" placeholder="*****" id="signupPassword" name="password1" class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-gray-700 dark:text-white" required />
+      <span class="text-sm text-red-600 font-medium">{{ form.errors.password1 }}</span>
     </div>
+    <div>
+      <label for="signupConfirmPassword" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Confirm Password</label>
+      <input type="password" placeholder="*****" id="signupConfirmPassword" name="password2" class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-gray-700 dark:text-white" required />
+      <span class="text-sm text-red-600 font-medium">{{ form.errors.password2 }}</span>
+    </div>
+    <button type="submit"  class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-sm font-semibold text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all transform hover:scale-[1.01]">Sign Up</button>
+  </form>
+
 </div>
-{% endblock content %}
+{% endblock %}
