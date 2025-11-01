@@ -8,26 +8,17 @@ from apps.subscriptions.models import Subscription
 from apps.subscriptions.serializers import SubscriptionSerializer
 
 class SubscriptionViewSet(viewsets.ModelViewSet):
-    queryset = Subscription.objects.all()
+    queryset = Subscription.objects.all().order_by('-id')
     serializer_class = SubscriptionSerializer
-    permission_classes = [IsAuthenticated]
+    ordering = ['-id']
+    permission_classes = [AllowAny]
 
-    def get_permissions(self):
-        if self.action in ['subscription_lists']:
-            return [AllowAny()]
-
-        if self.action in ['subscription_save', 'toggle_status', 'subscription_delete']:
-            return [IsAdminUser()]
-
-        return super().get_permissions()
-
-    @action(detail=False, methods=['get'], url_path='lists')
+    @action(detail=False, methods=['get'], url_path='lists', name='lists')
     def subscription_lists(self, request):
         per_page = int(request.GET.get('per_page', 12))
         page = int(request.GET.get('page', 1))
 
-        subscription = Subscription.objects.all()
-        paginator = Paginator(subscription, per_page)
+        paginator = Paginator(self.queryset, per_page)
         page_obj = paginator.get_page(page)
 
         serializer = self.get_serializer(page_obj, many=True)
@@ -41,7 +32,7 @@ class SubscriptionViewSet(viewsets.ModelViewSet):
             "data": serializer.data,
         })
 
-    @action(detail=False, methods=['post'], url_path='save')
+    @action(detail=False, methods=['post'], url_path='save', name='save')
     def subscription_save(self, request):
         subscription_id = request.data.get('id')
 
@@ -75,7 +66,7 @@ class SubscriptionViewSet(viewsets.ModelViewSet):
             "errors": serializer.errors
         }, status=400)
 
-    @action(detail=True, methods=['post'], url_path='toggle-subscription-status')
+    @action(detail=True, methods=['post'], url_path='toggle-subscription-status', name='status')
     def toggle_status(self, request, pk=None):
         try:
             subscription = self.get_object()
@@ -95,7 +86,7 @@ class SubscriptionViewSet(viewsets.ModelViewSet):
                 "message": "Subscription not found"
             }, status=404)
 
-    @action(detail=True, methods=['delete'], url_path='delete')
+    @action(detail=True, methods=['delete'], url_path='delete', name='delete')
     def subscription_delete(self, request, pk=None):
         try:
             subscription = self.get_object()

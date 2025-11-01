@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   // --- Initialize Lucide Icons ---
   lucide.createIcons();
-  
+
   // --- State ---
   let isSidebarOpen = false;
   let activeDropdown = null;
@@ -101,12 +101,12 @@ document.addEventListener('DOMContentLoaded', () => {
           console.error('Modal template not found:', templateId);
           return;
       }
-      
+
       const content = template.content.cloneNode(true);
       modalBody.innerHTML = ''; // Clear previous content
       modalBody.appendChild(content);
       modalTitle.textContent = title;
-      
+
       modalContainer.classList.remove('hidden');
       // Trigger transition
       setTimeout(() => {
@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
           modalBox.classList.add('scale-100', 'opacity-100');
       }, 10);
   };
+  window.openModal = openModal
   const closeModal = () => {
       modalBox.classList.add('scale-95', 'opacity-0');
       modalBox.classList.remove('scale-100', 'opacity-100');
@@ -138,51 +139,33 @@ document.addEventListener('DOMContentLoaded', () => {
   modalCancelBtn.addEventListener('click', closeModal);
   modalOverlay.addEventListener('click', closeModal);
 
-  const modalSaveBtn = document.querySelector('#modal-save-btn')
-  modalSaveBtn.addEventListener('click', (e) => {
-    e.preventDefault()
-    switch(currentModal) {
-      case 'add-plan' : 
-        addNewPlan();
-    }
-  })
-
   const addNewPlan = async () => {
     const form = document.querySelector('#add-new-plan-form')
-
-    const name = form.querySelector('[name="name"]').value
-    const amount = form.querySelector('[name="amount"]').value
-    const duration = form.querySelector('[name="duration"]').value
-    const features = form.querySelector('[name="features"]').value
+    const formData = new FormData(form)
 
     const alert = document.querySelector('#toast-alert .message')
     alert.innerHTML = 'Subscription saved successfully!'
     alert.parentElement.classList.remove('hidden')
-    if (!name.length) {
-      return false;
-    }
-    if (!amount.length) {
-      return false
-    }
-    if (!features.length){
-      return false;
-    }
-    const response = await fetch('http://10.0.101.109:8001/api/subscription/save/', {
+
+    const response = await fetch(SaveUrl, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Token 76fb2a1c297444e6698accf775440394689e2811',
         'X-API-Key': 'SAMPOS-API-12345'
       },
-      body: JSON.stringify({
-        name : name,
-        amount : amount,
-        duration : duration,
-        features : features,
-      })
-    })
-    console.log(response)
+      body: formData
+    });
+    closeModal()
   }
+  const saveBtn = document.querySelector('#modal-save-btn')
+  const modalConfirmBtn = document.getElementById('modal-confirm-btn');
+
+  saveBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    await addNewPlan()
+    await fetchAllData();
+  })
+
+
   // Modals
   // const modalContainer = document.getElementById('modal-container');
   // const modalBox = document.getElementById('modal-box');
@@ -239,6 +222,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // modalCancelBtn.addEventListener('click', closeModal);
   // modalOverlay.addEventListener('click', closeModal);
 
-  
+
 
 });

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "apps.transactions"
 
 ]
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'apps.core.apis.authentication.APIKeyAuthentication',
@@ -59,6 +60,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ]
 }
+
+CORS_ALLOW_CREDENTIALS = True
+
 
 
 MIDDLEWARE = [

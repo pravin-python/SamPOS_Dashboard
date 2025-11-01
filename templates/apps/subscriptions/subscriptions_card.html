@@ -17,139 +17,8 @@
     </div>
 
     <!-- Plans Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Plan 1: Basic -->
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 flex flex-col items-center text-center">
-        <h3 class="text-lg font-semibold text-gray-500 dark:text-gray-400 uppercase">Basic</h3>
-        <div class="my-4">
-          <span class="text-5xl font-bold">$19</span>
-          <span class="text-gray-500 dark:text-gray-400">/mo</span>
-        </div>
-        <p class="text-gray-600 dark:text-gray-300 mb-6">Ideal for small cafes and new businesses.</p>
-        <ul class="space-y-3 mb-8 w-full">
-          <li class="flex items-center">
-            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> 1 Register
-          </li>
-          <li class="flex items-center">
-            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> Basic Inventory
-          </li>
-          <li class="flex items-center">
-            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> Email Support
-          </li>
-          <li class="flex items-center text-gray-400 dark:text-gray-500">
-            <i data-lucide="x-circle" class="w-5 h-5 mr-2"></i> Advanced Reporting
-          </li>
-        </ul>
-        <div class="flex justify-between items-center w-full">
-          <!-- Left buttons -->
-          <div class="flex gap-2">
-              <!-- Outline Danger Button -->
-              <button class="border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1 rounded text-sm">
-                  <i class="bi bi-trash"></i>
-              </button>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="subscriptionContainer" ></div>
 
-              <!-- Primary Button -->
-              <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
-                  <i class="bi bi-pencil-square"></i>
-              </button>
-          </div>
-
-          <!-- Right primary button -->
-          <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
-              Deactivate Plan
-          </button>
-        </div>
-      </div>
-
-      <!-- Plan 2: Pro (Featured) -->
-      <div class="bg-blue-600 dark:bg-blue-700 text-white rounded-xl shadow-2xl p-8 flex flex-col items-center text-center relative overflow-hidden">
-        <span class="absolute top-0 right-0 px-4 py-1 bg-yellow-400 text-gray-900 font-semibold text-sm rounded-bl-lg">Popular</span>
-        <h3 class="text-lg font-semibold uppercase">Pro</h3>
-        <div class="my-4">
-          <span class="text-5xl font-bold">$49</span>
-          <span>/mo</span>
-        </div>
-        <p class="mb-6">For growing businesses that need more power.</p>
-        <ul class="space-y-3 mb-8 w-full">
-          <li class="flex items-center">
-            <i data-lucide="check-circle" class="w-5 h-5 text-green-300 mr-2"></i> 3 Registers
-          </li>
-          <li class="flex items-center">
-            <i data-lucide="check-circle" class="w-5 h-5 text-green-300 mr-2"></i> Full Inventory Control
-          </li>
-          <li class="flex items-center">
-            <i data-lucide="check-circle" class="w-5 h-5 text-green-300 mr-2"></i> Priority Support
-          </li>
-          <li class="flex items-center">
-            <i data-lucide="check-circle" class="w-5 h-5 text-green-300 mr-2"></i> Advanced Reporting
-          </li>
-        </ul>
-        <div class="flex justify-between items-center w-full">
-          <!-- Left buttons -->
-          <div class="flex gap-2">
-              <!-- Outline Danger Button -->
-              <button class="border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1 rounded text-sm">
-                  <i class="bi bi-trash"></i>
-              </button>
-
-              <!-- Primary Button -->
-              <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
-                  <i class="bi bi-pencil-square"></i>
-              </button>
-          </div>
-
-          <!-- Right primary button -->
-          <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
-              Deactivate Plan
-          </button>
-        </div>
-
-      </div>
-
-      <!-- Plan 3: Enterprise -->
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 flex flex-col items-center text-center">
-        <h3 class="text-lg font-semibold text-gray-500 dark:text-gray-400 uppercase">Enterprise</h3>
-        <div class="my-4">
-          <span class="text-5xl font-bold">$99</span>
-          <span class="text-gray-500 dark:text-gray-400">/mo</span>
-        </div>
-        <p class="text-gray-600 dark:text-gray-300 mb-6">For large operations and multi-location shops.</p>
-        <ul class="space-y-3 mb-8 w-full">
-          <li class="flex items-center">
-            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> Unlimited Registers
-          </li>
-          <li class="flex items-center">
-            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> Multi-Location Support
-          </li>
-          <li class="flex items-center">
-            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> 24/7 Phone Support
-          </li>
-          <li class="flex items-center">
-            <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> API Access
-          </li>
-        </ul>
-        <div class="flex justify-between items-center w-full">
-          <!-- Left buttons -->
-          <div class="flex gap-2">
-              <!-- Outline Danger Button -->
-              <button class="border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1 rounded text-sm">
-                  <i class="bi bi-trash"></i>
-              </button>
-
-              <!-- Primary Button -->
-              <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
-                  <i class="bi bi-pencil-square"></i>
-              </button>
-          </div>
-
-          <!-- Right primary button -->
-          <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
-              Deactivate Plan
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
   <template id="modal-template-add-plan">
     <form class="space-y-4" id="add-new-plan-form">
       {% csrf_token  %}
@@ -177,4 +46,207 @@
         </div>
     </form>
   </template>
+
 {% endblock %}
+
+{% block extrascript %}
+<script>
+  const delModalBody = document.querySelector('#del-modal-container')
+  const delModalConfirmBtn = document.querySelector('#del-modal-confirm-btn')
+  const delModalCloseBtn = document.querySelector('#del-modal-close-btn')
+  const delModalCancelBtn = document.querySelector('#del-modal-cancel-btn')
+
+  const delModalBox = document.querySelector('#del-modal-box')
+
+  // delModalCloseBtn.addEventListener('click', openDeleteModal )
+
+  const closeDeleteModal = () => {
+    delModalBody.classList.add('hidden');
+
+    setTimeout(() => {
+        delModalBox.classList.add('scale-95', 'opacity-0');
+        delModalBox.classList.remove('scale-100', 'opacity-100');
+    }, 10);
+  }
+
+  const openDeleteModal = (itemName, id, delmethod) =>{
+
+     delModalBody.classList.remove('hidden');
+     delModalConfirmBtn.dataset.id = id
+     delModalConfirmBtn.onclick = delmethod
+
+     // Trigger transition
+     setTimeout(() => {
+         delModalBox.classList.remove('scale-95', 'opacity-0');
+         delModalBox.classList.add('scale-100', 'opacity-100');
+     }, 10);
+ };
+
+ const deleteRecord = () => {
+
+ }
+
+ delModalCloseBtn.addEventListener('click', closeDeleteModal)
+ delModalCancelBtn.addEventListener('click', closeDeleteModal)
+
+ window.openDeleteModal = openDeleteModal
+  const SaveUrl  = "{% url 'core:subscription-subscription-save' %}";
+  let subscriptions = [];
+  async function fetchAllData() {
+    try {
+      const response = await fetch("{% url 'core:subscription-subscription-lists' %}", {
+          method: 'GET',
+          headers: {
+              'X-API-Key': '{{APIKEY}}'
+          }
+      });
+        const result = await response.json();
+
+        if (!result.status || !Array.isArray(result.data)) return;
+
+        const container = document.getElementById('subscriptionContainer');
+        container.innerHTML = "";
+
+        result.data.forEach(plan => {
+            const featuresHtml = plan.features
+                .split("\n")
+                .map(f => f.trim())
+                .filter(f => f.length > 0)
+                .map(f => `
+                    <li class="flex items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-circle" class="lucide lucide-check-circle w-5 h-5 text-green-500 mr-2"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
+                        <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-2"></i> ${f}
+                    </li>
+                `)
+                .join("");
+
+            const statusBtnText = plan.status === "active" ? "Deactivate Plan" : "Activate Plan";
+            const statusBtnClass = plan.status === "active"
+                ? "bg-red-600 hover:bg-red-700"
+                : "bg-green-600 hover:bg-green-700";
+
+            const card = `
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 flex flex-col items-center text-center">
+                    <h3 class="text-lg font-semibold text-gray-500 dark:text-gray-400 uppercase">${plan.name}</h3>
+                    <div class="my-4">
+                        <span class="text-5xl font-bold">$${plan.amount}</span>
+                        <span class="text-gray-500 dark:text-gray-400"></span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Plan Duration: ${plan.duration} Days</p>
+
+                    <ul class="space-y-3 mb-8 w-full">
+                        ${featuresHtml}
+                    </ul>
+
+                    <div class="flex justify-between items-center w-full">
+                        <div class="flex gap-2">
+                            <button class="delete-trigger border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-1 rounded text-sm"
+                                    >
+                                <i class="bi bi-trash"></i>
+                            </button>
+
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm"
+                                    onclick="editPlan(${plan.id})">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </div>
+
+                        <button class="${statusBtnClass} text-white px-3 py-1 rounded text-sm"
+                                onclick="toggleStatus(${plan.id})">
+                            ${statusBtnText}
+                        </button>
+                    </div>
+                </div>
+            `;
+            subscriptions = result.data;
+
+            container.insertAdjacentHTML("beforeend", card);
+        });
+        const deleteTriggers = document.querySelectorAll('.delete-trigger');
+        deleteTriggers.forEach((trigger, index) => {
+            trigger.addEventListener('click', () => {
+                const itemName = trigger.dataset.itemName || 'this item';
+                openDeleteModal(itemName, subscriptions[index].id, deletePlan);
+            });
+        });
+
+    } catch (error) {
+        console.error("API Fetch Error:", error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    fetchAllData();
+});
+
+
+// Placeholder Functions
+async function deletePlan(e) {
+  const id = e.target.dataset.id;
+
+  try {
+      const response = await fetch(`/api/subscription/${id}/delete/`, {
+          method: 'DELETE',
+          headers: {
+              'X-API-Key': '{{APIKEY}}'
+          },
+          credentials: "include",
+      });
+
+      const result = await response.json();
+
+      if (result.status) {
+          fetchAllData();
+      }
+  } catch (error) {
+      console.error("API Fetch Error:", error);
+  }
+  closeDeleteModal()
+}
+
+function editPlan(id) {
+
+    const templateId = 'add-plan';
+    const title = 'Add New Plan';
+    const subscription = subscriptions.filter(sub => sub.id == id)[0]
+    openModal(templateId, title);
+
+    const form = document.querySelector('#add-new-plan-form')
+    const name = form.querySelector('[name="name"]')
+    const amount = form.querySelector('[name="amount"]')
+    const duration = form.querySelector('[name="duration"]')
+    const features = form.querySelector('[name="features"]')
+    const hiddenInput = document.createElement('input')
+    hiddenInput.type = 'hidden'
+    hiddenInput.name = 'id'
+    hiddenInput.value = id
+    form.appendChild(hiddenInput)
+    name.value = subscription.name
+    amount.value = subscription.amount
+    duration.value = subscription.duration
+    features.value = subscription.features
+}
+
+async function toggleStatus(id) {
+    try {
+        const response = await fetch(`/api/subscription/${id}/toggle-subscription-status/`, {
+            method: 'POST',
+            headers: {
+                'X-API-Key': '{{APIKEY}}'
+            },
+            credentials: "include",
+        });
+
+        const result = await response.json();
+        console.log(result);
+
+        if (result.status) {
+            fetchAllData();
+        }
+
+    } catch (error) {
+        console.error("API Fetch Error:", error);
+    }
+}
+</script>
+{% endblock%}
